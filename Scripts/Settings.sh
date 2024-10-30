@@ -25,10 +25,11 @@ rm -rf feeds/luci/applications/luci-app-{passwall,mosdns,dockerman,dae*,bypass*}
 rm -rf feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*}
 git clone https://github.com/davidtall/small package/small
 #配置文件修改
+echo "CONFIG_PACKAGE_luci=y" >> ./.config
+echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-theme-$WRT_THEME=y" >> ./.config
+echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
 cat >> ./.config <<EOF
-CONFIG_PACKAGE_luci=y
-CONFIG_LUCI_LANG_zh_Hans=y
-
 CONFIG_IPQ_MEM_PROFILE_1024=n
 CONFIG_IPQ_MEM_PROFILE_512=y
 CONFIG_ATH11K_MEM_PROFILE_1G=n
