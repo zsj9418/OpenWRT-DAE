@@ -228,7 +228,7 @@ jobs:
             这是个平台固件包，内含多个设备！
             请注意选择你需要的设备固件！
             不要问，刷就完事了！
-
+            京东云亚瑟 AX1800 Pro DAED 使用方法详见恩山帖子: https://www.right.com.cn/forum/thread-8402269-1-1.html
             MTK和QCA全系带开源硬件加速，别问了！
 
             源码：${{env.WRT_REPO}}
