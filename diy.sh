@@ -21,7 +21,7 @@ cd $WRT_DIR
 #rm -rf feeds
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
-cd $WRT_DIR/package/
+cd package/
 $GITHUB_WORKSPACE/Scripts/Packages.sh
 $GITHUB_WORKSPACE/Scripts/Handles.sh
 cd ..
