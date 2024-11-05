@@ -1,19 +1,16 @@
-
+#JDCLOUD_AX1800_PRO
 CONFIG_TARGET_qualcommax=y
-CONFIG_TARGET_qualcommax_ipq807x=y
+CONFIG_TARGET_qualcommax_ipq60xx=y
 
-#设备列表
-CONFIG_TARGET_qualcommax_ipq807x_DEVICE_xiaomi_ax3600-stock=y
+CONFIG_TARGET_qualcommax_ipq60xx_DEVICE_jdcloud_ax1800-pro=y
 
 #WIFI驱动
 # CONFIG_DRIVER_11AC_SUPPORT is not set
 # CONFIG_DRIVER_11AX_SUPPORT is not set
 # CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE is not set
 # CONFIG_PACKAGE_hostapd-common is not set
-# CONFIG_PACKAGE_MAC80211_MESH is not set
 # CONFIG_PACKAGE_iw is not set
 # CONFIG_PACKAGE_kmod-ath is not set
-# CONFIG_PACKAGE_kmod-ath10k-smallbuffers is not set
 # CONFIG_PACKAGE_kmod-ath11k is not set
 # CONFIG_PACKAGE_kmod-ath11k-ahb is not set
 # CONFIG_PACKAGE_kmod-ath11k-pci is not set
@@ -22,14 +19,24 @@ CONFIG_TARGET_qualcommax_ipq807x_DEVICE_xiaomi_ax3600-stock=y
 # CONFIG_PACKAGE_wifi-scripts is not set
 # CONFIG_PACKAGE_wireless-regdb is not set
 # CONFIG_PACKAGE_wpad-openssl is not set
-# CONFIG_PACKAGE_ath10k-board-qca9887 is not set
-# CONFIG_PACKAGE_ath10k-firmware-qca9887 is not set
-# CONFIG_PACKAGE_ath11k-firmware-ipq8074 is not set
+# CONFIG_PACKAGE_ath11k-firmware-ipq6018 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qcn9074 is not set
-
 
 #NSS驱动
 CONFIG_ATH11K_NSS_SUPPORT=y
 CONFIG_ATH11K_NSS_MESH_SUPPORT=y
 CONFIG_PACKAGE_MAC80211_NSS_SUPPORT=y
+#其他调整
+CONFIG_ATH11K_DEBUGFS_HTT_STATS=n
+CONFIG_ATH11K_DEBUGFS_STA=n
+CONFIG_ATH11K_THERMAL=n
+CONFIG_COLLECT_KERNEL_DEBUG=y
+CONFIG_KERNEL_ARM_PMU=y
+CONFIG_KERNEL_ARM_PMUV3=y
+CONFIG_KERNEL_DYNAMIC_DEBUG=y
+CONFIG_KERNEL_PERF_EVENTS=y
+CONFIG_KERNEL_PREEMPT_NONE_BUILD=y
+CONFIG_KERNEL_PREEMPT_NONE=y
 
+CONFIG_PACKAGE_gdisk=y
+CONFIG_PACKAGE_sgdisk=y
