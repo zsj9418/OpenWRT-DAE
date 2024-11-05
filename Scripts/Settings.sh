@@ -20,10 +20,7 @@ sed -i "s/timezone='.*'/timezone='Asia\/Shanghai'/g" $CFG_FILE
 sed -i "s/UPnP IGD & PCP\/NAT-PMP/UPnP/g" feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 #修改jdc ax1800 pro 的内核大小为12M
 sed -i "/^define Device\/jdcloud_ax1800-pro/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
-#删除官方的默认插件
-rm -rf feeds/luci/applications/luci-app-{passwall,mosdns,dockerman,dae*,bypass*}
-rm -rf feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*}
-git clone https://github.com/davidtall/small package/small
+
 #配置文件修改
 #echo "CONFIG_PACKAGE_luci=y" >> ./.config
 #echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config

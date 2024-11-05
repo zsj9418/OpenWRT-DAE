@@ -46,6 +46,11 @@ fi
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 
+#删除官方的默认插件
+rm -rf feeds/luci/applications/luci-app-{passwall,mosdns,dockerman,dae*,bypass*}
+rm -rf feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*}
+git clone https://github.com/davidtall/small package/small
+
 #更新软件包版本
 UPDATE_VERSION() {
 	local PKG_NAME=$1
