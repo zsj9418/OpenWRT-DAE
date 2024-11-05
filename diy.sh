@@ -1,10 +1,13 @@
 #!/bin/bash
 
-WRT_REPO='https://github.com/LiBwrt-op/openwrt-6.x'
-WRT_BRANCH='openwrt-24.10'
+#WRT_REPO='https://github.com/LiBwrt-op/openwrt-6.x'
+#WRT_BRANCH='openwrt-24.10'
 
+WRT_REPO='https://github.com/VIKINGYFY/immortalwrt'
+WRT_BRANCH='main'
+
+export WRT_DIR=wrt
 export GITHUB_WORKSPACE=$(pwd)
-export WRT_DIR=LiBwrt-op
 export WRT_TARGET=JDC-AX1800-PRO-WIFI-NO
 export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
 export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
