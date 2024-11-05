@@ -25,20 +25,13 @@ rm -rf feeds/luci/applications/luci-app-{passwall,mosdns,dockerman,dae*,bypass*}
 rm -rf feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*}
 git clone https://github.com/davidtall/small package/small
 #配置文件修改
-echo "CONFIG_PACKAGE_luci=y" >> ./.config
-echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
+#echo "CONFIG_PACKAGE_luci=y" >> ./.config
+#echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
 echo "CONFIG_PACKAGE_luci-theme-$WRT_THEME=y" >> ./.config
 echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
-cat >> ./.config <<EOF
-CONFIG_IPQ_MEM_PROFILE_1024=n
-CONFIG_IPQ_MEM_PROFILE_512=y
-CONFIG_ATH11K_MEM_PROFILE_1G=n
-CONFIG_ATH11K_MEM_PROFILE_512M=y
+#cat >> ./.config <<EOF
 
-CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_kmod-tcp-bbr=y
-CONFIG_DEFAULT_tcp_bbr=y
-EOF
+#EOF
 #手动调整的插件
 if [ -n "$WRT_PACKAGE" ]; then
 	echo "$WRT_PACKAGE" >> ./.config
