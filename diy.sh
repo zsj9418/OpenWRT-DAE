@@ -3,9 +3,9 @@
 WRT_REPO='https://github.com/LiBwrt-op/openwrt-6.x'
 WRT_BRANCH='openwrt-24.10'
 
-GITHUB_WORKSPACE=$(pwd)
-WRT_DIR=LiBwrt-op
-WRT_TARGET=JDC-AX1800-PRO-WIFI-NO
+export GITHUB_WORKSPACE=$(pwd)
+export WRT_DIR=LiBwrt-op
+export WRT_TARGET=JDC-AX1800-PRO-WIFI-NO
 export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
 export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
 export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" ./Config/$WRT_TARGET.txt)
