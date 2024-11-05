@@ -27,8 +27,8 @@ git clone https://github.com/davidtall/small package/small
 #配置文件修改
 #echo "CONFIG_PACKAGE_luci=y" >> ./.config
 #echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
-echo "CONFIG_PACKAGE_luci-theme-$WRT_THEME=y" >> ./.config
-echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
+#echo "CONFIG_PACKAGE_luci-theme-$WRT_THEME=y" >> ./.config
+#echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
 #cat >> ./.config <<EOF
 
 #EOF
