@@ -33,4 +33,4 @@ $GITHUB_WORKSPACE/Scripts/Settings.sh
 
 make defconfig
 #make download -j8
-#make V=s -j$(nproc) || make V=s -j1
+#make -j$(nproc) || make V=s -j1
