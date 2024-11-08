@@ -32,5 +32,7 @@ cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL.tx
 $GITHUB_WORKSPACE/Scripts/Settings.sh
 
 make defconfig
-#make download -j8
-#make -j$(nproc) || make V=s -j1
+# make download -j8
+# make -j$(nproc) || make V=s -j1
+
+# make download -j8 && (make -j$(nproc) || make V=s -j1)
