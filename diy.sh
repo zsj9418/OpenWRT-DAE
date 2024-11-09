@@ -17,7 +17,6 @@ export WRT_WIFI='OWRT'
 export WRT_THEME='argon'
 export WRT_IP='192.168.1.1'
 
-chmod +x $GITHUB_WORKSPACE/Scripts/*.sh
 
 git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO $WRT_DIR
 cd $WRT_DIR
