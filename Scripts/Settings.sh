@@ -19,7 +19,7 @@ sed -i "s/timezone='.*'/timezone='Asia\/Shanghai'/g" $CFG_FILE
 #修改UPnP 菜单名
 sed -i "s/UPnP IGD & PCP\/NAT-PMP/UPnP/g" feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 #修改jdc ax1800 pro 的内核大小为12M
-sed -i "/^define Device\/jdcloud_ax1800-pro/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
+sed -i "/^define Device\/jdcloud_re-ss-01/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
 
 #配置文件修改
 #echo "CONFIG_PACKAGE_luci=y" >> ./.config

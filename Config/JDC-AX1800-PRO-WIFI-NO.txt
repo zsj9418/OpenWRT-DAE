@@ -2,7 +2,8 @@
 CONFIG_TARGET_qualcommax=y
 CONFIG_TARGET_qualcommax_ipq60xx=y
 
-CONFIG_TARGET_qualcommax_ipq60xx_DEVICE_jdcloud_ax1800-pro=y
+
+CONFIG_TARGET_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01=y
 
 #WIFI驱动
 # CONFIG_DRIVER_11AC_SUPPORT is not set
