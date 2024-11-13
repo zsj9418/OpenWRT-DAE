@@ -87,6 +87,7 @@ UPDATE_VERSION() {
 
 #UPDATE_VERSION "软件包名" "测试版，true，可选，默认为否"
 #UPDATE_VERSION "sing-box" "true"
+UPDATE_VERSION "tailscale"
 
 #删除官方的默认插件
 rm -rf feeds/luci/applications/luci-app-{passwall,mosdns,dockerman,dae*,bypass*}
