@@ -21,6 +21,11 @@ sed -i "s/UPnP IGD & PCP\/NAT-PMP/UPnP/g" feeds/luci/applications/luci-app-upnp/
 #修改jdc ax1800 pro 的内核大小为12M
 sed -i "/^define Device\/jdcloud_re-ss-01/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
 
+#修复passwall2 apk 版本号
+sed -i 's/PKG_VERSION:=\([0-9\.]*\)-[0-9]*/PKG_VERSION:=\1/; s/PKG_RELEASE:=.*/PKG_RELEASE:=1/' ./package/small/luci-app-passwall2/Makefile
+#修复tailscale
+sed -i '/\.\/files/d' ./feeds/packages/net/tailscale/Makefile
+
 #配置文件修改
 #echo "CONFIG_PACKAGE_luci=y" >> ./.config
 #echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
