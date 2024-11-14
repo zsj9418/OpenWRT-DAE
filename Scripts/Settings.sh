@@ -26,7 +26,7 @@ sed -i 's/PKG_VERSION:=\([0-9\.]*\)-[0-9]*/PKG_VERSION:=\1/; s/PKG_RELEASE:=.*/P
 #修复tailscale
 sed -i '/\.\/files/d' ./feeds/packages/net/tailscale/Makefile
 
-rm -rf ./build_dir/target-aarch64_cortex-a53_musl/coremark*
+#rm -rf ./build_dir/target-aarch64_cortex-a53_musl/coremark*
 
 #配置文件修改
 #echo "CONFIG_PACKAGE_luci=y" >> ./.config
