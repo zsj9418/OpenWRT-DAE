@@ -82,8 +82,9 @@ UPDATE_VERSION() {
 #UPDATE_VERSION "sing-box" "true"
 UPDATE_VERSION "tailscale"
 
-git clone https://github.com/davidtall/small small
-git clone https://github.com/zzsj0928/luci-app-pushbot luci-app-pushbot
+rm -rf small && git clone https://github.com/davidtall/small small
+
+rm -rf luci-app-pushbot && git clone https://github.com/zzsj0928/luci-app-pushbot luci-app-pushbot
 
 #删除官方的默认插件
 rm -rf ../feeds/luci/applications/luci-app-{passwall,mosdns,dockerman,dae*,bypass*}
