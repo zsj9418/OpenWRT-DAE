@@ -39,7 +39,7 @@ sed -i "/^define Device\/jdcloud_re-ss-01/,/^endef/ { /KERNEL_SIZE := 6144k/s//K
 
 
 
-#rm -rf ./build_dir/target-aarch64_cortex-a53_musl/coremark*
+rm -rf ./build_dir/target-aarch64_cortex-a53_musl/coremark*
 
 #配置文件修改
 #echo "CONFIG_PACKAGE_luci=y" >> ./.config
