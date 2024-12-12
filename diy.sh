@@ -6,6 +6,14 @@
 WRT_REPO='https://github.com/VIKINGYFY/immortalwrt'
 WRT_BRANCH='main'
 
+if [ -n "$1" ]; then
+    # 如果有传递参数，赋值给WRT_TARGET
+    export WRT_TARGET="$1"
+else
+    # 如果没有传递参数，设置默认值
+    export WRT_TARGET="Config/JDC-AX1800-PRO-WIFI-NO.txt"
+fi
+
 export WRT_DIR=wrt
 export GITHUB_WORKSPACE=$(pwd)
 export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
@@ -18,13 +26,7 @@ export WRT_THEME='argon'
 export WRT_IP='192.168.10.1'
 export WRT_CI='VIKINGYFY-OpenWRT-CI'
 
-if [ -n "$1" ]; then
-    # 如果有传递参数，赋值给WRT_TARGET
-    export WRT_TARGET="$1"
-else
-    # 如果没有传递参数，设置默认值
-    export WRT_TARGET="Config/JDC-AX1800-PRO-WIFI-NO.txt"
-fi
+
 
 if [ ! -d $WRT_DIR ]; then
   git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO $WRT_DIR
