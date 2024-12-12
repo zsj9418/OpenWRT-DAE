@@ -1,4 +1,4 @@
-
+#XIAOMI
 CONFIG_TARGET_qualcommax=y
 CONFIG_TARGET_qualcommax_ipq807x=y
 
