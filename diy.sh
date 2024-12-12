@@ -18,7 +18,7 @@ export WRT_DIR=wrt
 export GITHUB_WORKSPACE=$(pwd)
 export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
 export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
-export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" ./Config/$WRT_TARGET.txt)
+export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $WRT_TARGET)
 export WRT_NAME='OWRT'
 export WRT_SSID='OWRT'
 export WRT_WORD='12345678'
