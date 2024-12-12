@@ -24,7 +24,7 @@ export WRT_SSID='OWRT'
 export WRT_WORD='12345678'
 export WRT_THEME='argon'
 export WRT_IP='192.168.10.1'
-export WRT_CI='VIKINGYFY-OpenWRT-CI'
+export WRT_CI='WSL-OpenWRT-CI'
 
 
 
