@@ -4,6 +4,7 @@
 #WRT_BRANCH='openwrt-24.10'
 
 WRT_REPO='https://github.com/VIKINGYFY/immortalwrt'
+#WRT_REPO='https://github.com/davidtall/VIKINGYFY-immort'
 WRT_BRANCH='main'
 
 if [ -n "$1" ]; then
