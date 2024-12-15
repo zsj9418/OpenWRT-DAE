@@ -14,6 +14,10 @@ else
     export WRT_TARGET="Config/JDC-AX1800-PRO-WIFI-NO.txt"
 fi
 
+if [ -n "$2" ]; then
+    WRT_REPO="$2"
+fi
+
 export WRT_DIR=wrt
 export GITHUB_WORKSPACE=$(pwd)
 export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
@@ -33,6 +37,7 @@ if [ ! -d $WRT_DIR ]; then
   cd $WRT_DIR
 else
   cd $WRT_DIR
+  git remote set-url origin $WRT_REPO
   rm -rf feeds/*
   git reset --hard
   git pull
