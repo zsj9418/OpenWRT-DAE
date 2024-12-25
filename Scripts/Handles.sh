@@ -50,6 +50,6 @@ if [ -f "$TS_FILE" ]; then
 	cd $PKG_PATCH && echo "tailscale has been fixed!"
 fi
 
-if [ "$WRT_TARGET" == "IPQ60XX-6.12-WIFI-NO" ]; then
+#if [ "$WRT_TARGET" == "IPQ60XX-6.12-WIFI-NO" ]; then
   #echo "" > ../../Config/GENERAL.txt
-fi
+#fi
