@@ -73,7 +73,7 @@ EOF
 add_kernel_config "target/linux/qualcommax/config-6.6"
 add_kernel_config "target/linux/qualcommax/config-6.12"
 
-function add_kernel_config() {
+add_kernel_config() {
   if [ -f $1 ]; then
     cat >> $1 <<EOF
     CONFIG_BPF=y
