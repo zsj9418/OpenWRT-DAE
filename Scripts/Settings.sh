@@ -70,8 +70,6 @@ CONFIG_KERNEL_XDP_SOCKETS=y
 CONFIG_PACKAGE_kmod-xdp-sockets-diag=y
 EOF
 
-add_kernel_config "target/linux/qualcommax/config-6.6"
-add_kernel_config "target/linux/qualcommax/config-6.12"
 
 add_kernel_config() {
   if [ -f $1 ]; then
@@ -95,7 +93,10 @@ add_kernel_config() {
 
     CONFIG_SCHED_CLASS_EXT=y
     CONFIG_PROBE_EVENTS_BTF_ARGS=y
-    EOF
+EOF
     echo "add_kernel_config to $1 done"
   fi
 }
+
+add_kernel_config "target/linux/qualcommax/config-6.6"
+add_kernel_config "target/linux/qualcommax/config-6.12"
