@@ -44,11 +44,6 @@ sed -i "/^define Device\/redmi_ax5-jdcloud/,/^endef/ { /KERNEL_SIZE := 6144k/s//
 sed -i "/^define Device\/jdcloud_ax1800-pro/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
 sed -i "/^define Device\/jdcloud_ax6600/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" target/linux/qualcommax/image/ipq60xx.mk
 
-
-
-
-rm -rf ./build_dir/target-aarch64_cortex-a53_musl/coremark*
-
 #配置文件修改
 echo "CONFIG_PACKAGE_luci=y" >> ./.config
 echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
@@ -60,3 +55,47 @@ if [ -n "$WRT_PACKAGE" ]; then
 	echo "$WRT_PACKAGE" >> ./.config
 fi
 
+#ebpf相关
+cat >> ./.config <<EOF
+#eBPF
+CONFIG_DEVEL=y
+CONFIG_KERNEL_DEBUG_INFO=y
+CONFIG_KERNEL_DEBUG_INFO_REDUCED=n
+CONFIG_KERNEL_DEBUG_INFO_BTF=y
+CONFIG_KERNEL_CGROUPS=y
+CONFIG_KERNEL_CGROUP_BPF=y
+CONFIG_KERNEL_BPF_EVENTS=y
+CONFIG_BPF_TOOLCHAIN_HOST=y
+CONFIG_KERNEL_XDP_SOCKETS=y
+CONFIG_PACKAGE_kmod-xdp-sockets-diag=y
+EOF
+
+add_kernel_config "target/linux/qualcommax/config-6.6"
+add_kernel_config "target/linux/qualcommax/config-6.12"
+
+function add_kernel_config() {
+  if [ -f $1 ]; then
+    cat >> $1 <<EOF
+    CONFIG_BPF=y
+    CONFIG_BPF_SYSCALL=y
+    CONFIG_BPF_JIT=y
+    CONFIG_CGROUPS=y
+    CONFIG_KPROBES=y
+    CONFIG_NET_INGRESS=y
+    CONFIG_NET_EGRESS=y
+    CONFIG_NET_SCH_INGRESS=m
+    CONFIG_NET_CLS_BPF=m
+    CONFIG_NET_CLS_ACT=y
+    CONFIG_BPF_STREAM_PARSER=y
+    CONFIG_DEBUG_INFO=y
+    # CONFIG_DEBUG_INFO_REDUCED is not set
+    CONFIG_DEBUG_INFO_BTF=y
+    CONFIG_KPROBE_EVENTS=y
+    CONFIG_BPF_EVENTS=y
+
+    CONFIG_SCHED_CLASS_EXT=y
+    CONFIG_PROBE_EVENTS_BTF_ARGS=y
+    EOF
+    echo "add_kernel_config to $1 done"
+  fi
+}

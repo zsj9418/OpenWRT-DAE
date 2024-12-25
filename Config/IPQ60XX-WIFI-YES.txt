@@ -41,3 +41,19 @@ CONFIG_IPQ_MEM_PROFILE_1024=n
 CONFIG_IPQ_MEM_PROFILE_512=y
 CONFIG_ATH11K_MEM_PROFILE_1G=n
 CONFIG_ATH11K_MEM_PROFILE_512M=y
+
+#USB CPE 驱动
+CONFIG_PACKAGE_kmod-usb-net=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-mbim=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-cdc-subset=y
+CONFIG_PACKAGE_kmod-usb-net-huawei-cdc-ncm=y
+CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan=y
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan-fibocom=y
+CONFIG_PACKAGE_kmod-usb-net-qmi-wwan-quectel=y
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=y

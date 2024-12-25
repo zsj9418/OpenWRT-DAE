@@ -51,5 +51,5 @@ if [ -f "$TS_FILE" ]; then
 fi
 
 if [ "$WRT_TARGET" == "IPQ60XX-6.12-WIFI-NO" ]; then
-  echo "" > ../../Config/GENERAL.txt
+  #echo "" > ../../Config/GENERAL.txt
 fi
