@@ -42,6 +42,7 @@ else
   cd $WRT_DIR
   git remote set-url origin $WRT_REPO
   rm -rf feeds/*
+  git clean -f
   git reset --hard
   git pull
 fi
