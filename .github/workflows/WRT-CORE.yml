@@ -125,8 +125,8 @@ jobs:
         if: env.WRT_TEST != 'true'
         uses: HiGarfield/cachewrtbuild@main
         with:
-          ccache: false
-          mixkey: ${{ env.WRT_REPO }}-${{ env.WRT_BRANCH }}-${{ env.WRT_TARGET }}-${{ env.WRT_HASH }}
+          ccache: true
+          mixkey: ${{ env.WRT_REPO }}-${{ env.WRT_BRANCH }}-${{ env.WRT_TARGET }}
           prefix: ${{ env.WRT_DIR }}
 
       - name: Update Feeds
