@@ -83,6 +83,7 @@ UPDATE_VERSION() {
 UPDATE_VERSION "tailscale"
 
 rm -rf small && git clone https://github.com/davidtall/small small
+rm -rf small/luci-app-bypass
 #版本号修复
 sed -i 's/-\(\$(PKG_RELEASE)\)/.\1/g' small/v2ray-geodata/Makefile
 rm -rf luci-app-pushbot && git clone https://github.com/zzsj0928/luci-app-pushbot luci-app-pushbot
