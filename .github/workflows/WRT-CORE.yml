@@ -121,7 +121,8 @@ jobs:
           find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
 
       - name: Cache Toolchain(缓存工具链)
-        if: env.CACHE_TOOLCHAIN == 'true'
+        id: check-cache
+        if: env.WRT_TEST != 'true'
         uses: HiGarfield/cachewrtbuild@main
         with:
           ccache: false
