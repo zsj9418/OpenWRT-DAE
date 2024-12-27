@@ -132,6 +132,7 @@ jobs:
       - name: Update Feeds
         run: |
           cd ./wrt/
+          git status
           git clean -f && git reset --hard
           git pull
           
