@@ -104,8 +104,6 @@ jobs:
 
       - name: Initialization Values
         run: |
-          echo "CI_NAME: $CI_NAME"
-      
           export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
           export WRT_CI=$(basename $GITHUB_WORKSPACE)
           export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
