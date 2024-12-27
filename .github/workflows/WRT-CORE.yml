@@ -133,9 +133,6 @@ jobs:
         run: |
           cd ./wrt/
           git status
-          git clean -f && git reset --hard
-          git pull
-          git status
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
