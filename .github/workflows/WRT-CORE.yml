@@ -55,6 +55,7 @@ env:
   WRT_PACKAGE: ${{inputs.WRT_PACKAGE}}
   WRT_TEST: ${{inputs.WRT_TEST}}
   WRT_DIR: 'wrt'
+  CI_NAME: ${{inputs.CI_NAME}}
 
 jobs:
   core:
@@ -100,15 +101,19 @@ jobs:
 
       - name: Initialization Values
         run: |
+          echo "CI_NAME: $CI_NAME"
+      
           export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
           export WRT_CI=$(basename $GITHUB_WORKSPACE)
           export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
-          export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt)
+          export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt)          
+          export WRT_ARCH=$(sed -n 's/.*_DEVICE_\(.*\)_DEVICE_.*/\1/p' $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt | head -n 1)
 
           echo "WRT_DATE=$WRT_DATE" >> $GITHUB_ENV
           echo "WRT_CI=$WRT_CI" >> $GITHUB_ENV
           echo "WRT_VER=$WRT_VER" >> $GITHUB_ENV
           echo "WRT_TYPE=$WRT_TYPE" >> $GITHUB_ENV
+          echo "WRT_ARCH=$WRT_ARCH" >> $GITHUB_ENV
 
       - name: Clone Code
         run: |
@@ -126,7 +131,7 @@ jobs:
         uses: HiGarfield/cachewrtbuild@main
         with:
           ccache: true
-          mixkey: ${{ env.WRT_REPO }}-${{ env.WRT_BRANCH }}-${{ env.WRT_TARGET }}
+          mixkey: ${{ env.WRT_REPO }}-${{ env.WRT_ARCH }}
           prefix: ${{ env.WRT_DIR }}
 
       - name: Update Feeds
