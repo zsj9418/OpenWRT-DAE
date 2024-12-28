@@ -122,3 +122,6 @@ jobs:
           sed -i 's/ $(tool.*\/stamp-compile)//g' ./wrt/Makefile
           sed -i 's/ $(tool.*\/stamp-install)//g' ./wrt/Makefile
           echo "Use Caches To Compile."
+      - name: Update Feeds
+        run: |
+          echo ${{steps.check-cache.outputs.cache-hit}}
