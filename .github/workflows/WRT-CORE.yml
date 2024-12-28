@@ -41,8 +41,8 @@ on:
         required: false
         type: string
       CI_NAME:
-          required: false
-          type: string
+        required: false
+        type: string
 
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -134,6 +134,27 @@ jobs:
           ccache: true
           mixkey: ${{ env.WRT_REPO }}-${{ env.CI_NAME }}-${{ env.WRT_ARCH }}
           prefix: ${{ env.WRT_DIR }}
+
+      - name: Check Caches
+        id: check-cache
+        if: env.WRT_TEST != 'true'
+        uses: actions/cache@main
+        with:
+          key: ${{ env.WRT_REPO }}-${{ env.CI_NAME }}-${{ env.WRT_ARCH }}
+          restore-keys: |
+            ${{ env.WRT_REPO }}-${{ env.CI_NAME }}
+          path: |
+            ./wrt/.ccache
+            ./wrt/staging_dir/host*
+            ./wrt/staging_dir/tool*
+
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: Use Caches
+        continue-on-error: true
+        run: |
+          sed -i 's/ $(tool.*\/stamp-compile)//g' ./wrt/Makefile
+          sed -i 's/ $(tool.*\/stamp-install)//g' ./wrt/Makefile
+          echo "Use Caches To Compile."
 
       - name: Update Feeds
         run: |
