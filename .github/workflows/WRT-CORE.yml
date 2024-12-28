@@ -126,15 +126,6 @@ jobs:
         run: |
           find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
 
-      - name: Cache Toolchain(缓存工具链)
-        id: check-cache
-        if: env.WRT_TEST != 'true'
-        uses: HiGarfield/cachewrtbuild@main
-        with:
-          ccache: true
-          mixkey: ${{ env.WRT_REPO }}-${{ env.CI_NAME }}-${{ env.WRT_ARCH }}
-          prefix: ${{ env.WRT_DIR }}
-
       - name: Check Caches
         id: check-cache
         if: env.WRT_TEST != 'true'
