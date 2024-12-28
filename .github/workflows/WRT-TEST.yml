@@ -10,7 +10,7 @@ on:
         default: 'MEDIATEK'
         required: true
         type: choice
-        options: [MEDIATEK, ROCKCHIP, X86, IPQ60XX-WIFI-YES, IPQ60XX-WIFI-NO, IPQ807X-WIFI-YES, IPQ807X-WIFI-NO, TEST]
+        options: [IPQ60XX-WIFI-NO]
       SOURCE:
         default: 'VIKINGYFY/immortalwrt'
         required: true
@@ -37,10 +37,11 @@ jobs:
   config:
     name: ${{inputs.TARGET}}
     #调用公用编译核心WRT-CORE.yml
-    uses: ./.github/workflows/WRT-CORE.yml
+    uses: ./.github/workflows/WRT-CORE-TEST.yml
     with:
       #编译平台
-      WRT_TARGET: ${{inputs.TARGET}}
+      #编译平台
+      WRT_TARGET: ${{matrix.TARGET}}
       #默认主题
       WRT_THEME: argon
       #默认主机名
@@ -54,12 +55,14 @@ jobs:
       #默认密码，仅作提示，修改无用
       WRT_PW: 无
       #源码链接
-      WRT_REPO: https://github.com/${{inputs.SOURCE}}.git
+      WRT_REPO: https://github.com/${{matrix.SOURCE}}.git
       #源码分支
-      WRT_BRANCH: ${{inputs.BRANCH}}
+      WRT_BRANCH: ${{matrix.BRANCH}}
       #源码名称
-      WRT_SOURCE: ${{inputs.SOURCE}}
+      WRT_SOURCE: ${{matrix.SOURCE}}
       #插件调整
       WRT_PACKAGE: ${{inputs.PACKAGE}}
       #仅输出配置文件
       WRT_TEST: ${{inputs.TEST}}
+
+      CI_NAME: "QCA-NO-WIFI"
