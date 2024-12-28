@@ -106,10 +106,9 @@ jobs:
         if: env.WRT_TEST != 'true'
         uses: actions/cache@main
         with:
-          key: ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}-${{env.WRT_HASH}}-
+          key: ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}-${{env.WRT_HASH}}----
           restore-keys: |
-            ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
-            ${{ env.WRT_ARCH }}
+            "bbbbbbbbbb"
           path: |
             ./wrt/.ccache
             ./wrt/staging_dir/host*
