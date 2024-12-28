@@ -131,16 +131,15 @@ jobs:
         if: env.WRT_TEST != 'true'
         uses: actions/cache@main
         with:
-          key: ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}-${{env.WRT_HASH}}
+          key: ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
           restore-keys: |
-            ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
             ${{ env.WRT_ARCH }}
           path: |
             ./wrt/.ccache
             ./wrt/staging_dir/host*
             ./wrt/staging_dir/tool*
 
-      - if: steps.check-cache.outputs.cache-hit == 'true'
+      - if: ${{ steps.check-cache.outputs.cache-hit != '' }}
         name: Hit Caches
         continue-on-error: true
         run: |
