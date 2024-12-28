@@ -131,7 +131,7 @@ jobs:
         if: env.WRT_TEST != 'true'
         uses: actions/cache@main
         with:
-          key: ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
+          key: ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}-${{env.WRT_HASH}}
           restore-keys: |
             ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
             ${{ env.WRT_ARCH }}
