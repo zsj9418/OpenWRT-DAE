@@ -140,7 +140,7 @@ jobs:
             ./wrt/staging_dir/host*
             ./wrt/staging_dir/tool*
 
-      - if: ${{ steps.cache-npm.outputs.cache-hit == 'true' }}
+      - if: ${{ steps.check-cache.outputs.cache-hit == 'true' }}
         name: Hit Caches
         continue-on-error: true
         run: |
