@@ -141,7 +141,7 @@ jobs:
             ./wrt/staging_dir/tool*
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: Use Caches
+        name: Hit Caches
         continue-on-error: true
         run: |
           sed -i 's/ $(tool.*\/stamp-compile)//g' ./wrt/Makefile
