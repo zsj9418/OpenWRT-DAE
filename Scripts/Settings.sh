@@ -93,6 +93,7 @@ CONFIG_BPF_EVENTS=y
 
 CONFIG_SCHED_CLASS_EXT=y
 CONFIG_PROBE_EVENTS_BTF_ARGS=y
+CONFIG_IMX_SCMI_MISC_DRV=y
 EOF
     echo "add_kernel_config to $1 done"
   fi
