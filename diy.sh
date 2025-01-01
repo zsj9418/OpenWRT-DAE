@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#WRT_REPO='https://github.com/LiBwrt-op/openwrt-6.x'
-#WRT_BRANCH='openwrt-24.10'
+#WRT_REPO='https://github.com/davidtall/LiBwrt-openwrt-6.x'
+#WRT_BRANCH='kernel-6.12'
 
 #WRT_REPO='https://github.com/davidtall/immortalwrt-6.12'
 #WRT_BRANCH='main'
