@@ -75,4 +75,3 @@ fi
 
 add_kernel_config "target/linux/qualcommax/config-6.6"
 add_kernel_config "target/linux/qualcommax/config-6.12"
-add_ebpf_config "./.config"
