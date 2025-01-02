@@ -165,15 +165,10 @@ jobs:
         run: |
           . $GITHUB_WORKSPACE/Scripts/function.sh
           cd ./wrt/
-
           rm -rf ./tmp* ./.config*
-          
           generate_config ".config"
-          
           cat .config
-
           $GITHUB_WORKSPACE/Scripts/Settings.sh
-
           make defconfig -j$(nproc)
 
       - name: Download Packages

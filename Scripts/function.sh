@@ -50,8 +50,9 @@ EOF
 
 function cat_usb_net() {
 
-#ebpf相关
+
   cat >> $1 <<EOF
+#USB CPE Driver
 CONFIG_PACKAGE_kmod-usb-net=y
 CONFIG_PACKAGE_kmod-usb-net-cdc-eem=y
 CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
@@ -121,6 +122,10 @@ cat >> $1 <<EOF
 # CONFIG_PACKAGE_ath11k-firmware-qcn9074 is not set
 EOF
 }
+function change_nss_version() {
+    echo "CONFIG_NSS_FIRMWARE_VERSION_11_4=n" >> $1
+    echo "CONFIG_NSS_FIRMWARE_VERSION_12_2=y" >> $1
+}
 
 function generate_config() {
 
@@ -138,9 +143,11 @@ EOF
     case "$target" in
     	ipq60xx)
     	  cat_ipq60xx_nowifi $1
+    	  change_nss_version $1
     	;;
      ipq807x)
        cat_ipq807x_nowifi $1
+       change_nss_version $1
       ;;
     esac
   else
@@ -156,6 +163,7 @@ EOF
   esac
   #增加ebpf
   cat_ebpf_config $1
+
 }
 
 
