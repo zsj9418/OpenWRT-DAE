@@ -77,5 +77,5 @@ if [[ $WRT_TARGET != *"X86"* ]]; then
 	echo "CONFIG_TARGET_OPTIMIZATION=\"-O2 -pipe -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53\"" >> ./.config
 fi
 
-add_kernel_config "target/linux/qualcommax/config-6.6"
-add_kernel_config "target/linux/qualcommax/config-6.12"
+cat_kernel_config "target/linux/qualcommax/config-6.6"
+cat_kernel_config "target/linux/qualcommax/config-6.12"
