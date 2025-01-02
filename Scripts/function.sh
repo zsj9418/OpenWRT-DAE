@@ -149,7 +149,7 @@ EOF
 
   case "$(WRT_TARGET)" in
   	jdcloud_re-ss-01|\
-    jdcloud_re-cs-02)|\
+    jdcloud_re-cs-02|\
     jdcloud_re-cs-07)
       cat_usb_net $1
   		;;
