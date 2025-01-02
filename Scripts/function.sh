@@ -135,7 +135,7 @@ EOF
   cat $GITHUB_WORKSPACE/Config/GENERAL.txt >> $1
   #增加wifi 驱动
   if [[ "$CI_NAME" == *"NOWIFI"* ]]; then
-    case "$(target)" in
+    case "$target" in
     	ipq60xx)
     	  cat_ipq60xx_nowifi $1
     	;;
@@ -147,7 +147,7 @@ EOF
     echo ""
   fi
 
-  case "$(WRT_TARGET)" in
+  case "$WRT_TARGET" in
   	jdcloud_re-ss-01|\
     jdcloud_re-cs-02|\
     jdcloud_re-cs-07)
@@ -155,7 +155,7 @@ EOF
   		;;
   esac
   #增加ebpf
-  add_ebpf_config $1
+  cat_ebpf_config $1
 }
 
 
