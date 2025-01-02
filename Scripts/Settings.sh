@@ -1,5 +1,5 @@
 #!/bin/bash
-. function.sh
+. $(dirname "$(realpath "$0")")/function.sh
 #修改默认主题
 sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 #修改immortalwrt.lan关联IP
