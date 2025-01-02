@@ -96,22 +96,6 @@ jobs:
         run: |
           find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
 
-
-
-      - name: Update Feeds
-        run: |
-          cd ./wrt/
-          git status
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-
-      - name: Custom Packages
-        run: |
-          cd ./wrt/package/
-
-          $GITHUB_WORKSPACE/Scripts/Packages.sh
-          $GITHUB_WORKSPACE/Scripts/Handles.sh
-
       - name: Custom Settings
         run: |
           . $GITHUB_WORKSPACE/Scripts/function.sh

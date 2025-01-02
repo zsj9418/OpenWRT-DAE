@@ -111,13 +111,13 @@ EOF
 
 function generate_config() {
 
-  ipq=$(echo $CI_NAME | cut -d'-' -f1)
-cat >> $1 << EOF
+  local target=$(echo $CI_NAME | cut -d'-' -f1)
+  cat >> $1 << EOF
 CONFIG_TARGET_qualcommax=y
-CONFIG_TARGET_qualcommax_${ipq}=y
+CONFIG_TARGET_qualcommax_${target}=y
 CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=n
-CONFIG_TARGET_DEVICE_qualcommax_${ipq}_DEVICE_${WRT_TARGET}=y
+CONFIG_TARGET_DEVICE_qualcommax_${target}_DEVICE_${WRT_TARGET}=y
 EOF
   cat $GITHUB_WORKSPACE/Config/GENERAL.txt >> $1
 }
