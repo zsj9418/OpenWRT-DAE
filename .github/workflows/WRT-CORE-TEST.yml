@@ -92,7 +92,7 @@ jobs:
           echo "WRT_CI=$WRT_CI" >> $GITHUB_ENV
           echo "WRT_VER=$WRT_VER" >> $GITHUB_ENV
           echo "WRT_TYPE=$WRT_TYPE" >> $GITHUB_ENV
-          
+  
           echo $WRT_ARCH
 
       - name: Clone Code

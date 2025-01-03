@@ -65,3 +65,5 @@ jobs:
       WRT_TEST: ${{inputs.TEST}}
 
       CI_NAME: ${{github.workflow}}
+
+      WRT_ARCH: "qualcommax_ipq807x"

@@ -32,7 +32,7 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        TARGET: [jdcloud_re-ss-01, jdcloud_re-cs-02, jdcloud_re-cs-07, redmi_ax5-jdcloud, redmi_ax, IPQ60XX-WIFI-NO]
+        TARGET: [jdcloud_re-ss-01, jdcloud_re-cs-02, jdcloud_re-cs-07, redmi_ax5-jdcloud, redmi_ax5]
         SOURCE: [davidtall/LiBwrt-openwrt-6.x]
         BRANCH: [kernel-6.12]
 

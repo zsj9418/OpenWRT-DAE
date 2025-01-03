@@ -101,7 +101,12 @@ jobs:
           export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
           export WRT_CI=$(basename $GITHUB_WORKSPACE)
           export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
-          export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt)          
+          export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt)
+          
+          [[ -z $WRT_ARCH ]] && {
+            export WRT_ARCH=$(sed -n 's/.*_DEVICE_\(.*\)_DEVICE_.*/\1/p' $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt | head -n 1)
+            echo "WRT_ARCH=$WRT_ARCH" >> $GITHUB_ENV
+          }
          
           echo "WRT_DATE=$WRT_DATE" >> $GITHUB_ENV
           echo "WRT_CI=$WRT_CI" >> $GITHUB_ENV
@@ -161,7 +166,7 @@ jobs:
           . $GITHUB_WORKSPACE/Scripts/function.sh
           cd ./wrt/
           
-          generate_config ".config" && cat .config
+          generate_config && cat .config
           
           $GITHUB_WORKSPACE/Scripts/Settings.sh
 
