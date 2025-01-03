@@ -82,12 +82,18 @@ jobs:
           export WRT_CI=$(basename $GITHUB_WORKSPACE)
           export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
           export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt)
+          
+          [[ -z $WRT_ARCH ]] && {
+            export WRT_ARCH=$(sed -n 's/.*_DEVICE_\(.*\)_DEVICE_.*/\1/p' $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt | head -n 1)
+            echo "WRT_ARCH=$WRT_ARCH" >> $GITHUB_ENV
+          }          
 
           echo "WRT_DATE=$WRT_DATE" >> $GITHUB_ENV
           echo "WRT_CI=$WRT_CI" >> $GITHUB_ENV
           echo "WRT_VER=$WRT_VER" >> $GITHUB_ENV
           echo "WRT_TYPE=$WRT_TYPE" >> $GITHUB_ENV
-        
+          
+          echo $WRT_ARCH
 
       - name: Clone Code
         run: |

@@ -129,32 +129,33 @@ function change_nss_version() {
 
 function generate_config() {
 
+  config_file=".config"
   #如配置文件已存在
   [[ -f $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt ]] && {
-    cat $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt  >> $1
+    cat $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt  >> $config_file
     return 0;
   }
   config_target=$(echo $WRT_ARCH | cut -d'_' -f1)
-  cat >> $1 <<EOF
+  cat >> $config_file <<EOF
 CONFIG_TARGET_$(echo $WRT_ARCH | cut -d'_' -f1)=y
 CONFIG_TARGET_${WRT_ARCH}=y
 CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=n
 CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_${WRT_TARGET}=y
 EOF
-  cat $GITHUB_WORKSPACE/Config/GENERAL.txt >> $1
+  cat $GITHUB_WORKSPACE/Config/GENERAL.txt >> $config_file
   local target=$(echo $WRT_ARCH | cut -d'_' -f2)
 
   #增加wifi 驱动
   if [[ "$CI_NAME" == *"NOWIFI"* ]]; then
     case "$target" in
     	ipq60xx)
-    	  cat_ipq60xx_nowifi $1
-    	  change_nss_version $1
+    	  cat_ipq60xx_nowifi $config_file
+    	  change_nss_version $config_file
     	;;
      ipq807x)
-       cat_ipq807x_nowifi $1
-       change_nss_version $1
+       cat_ipq807x_nowifi $config_file
+       change_nss_version $config_file
       ;;
     esac
   else
@@ -165,11 +166,11 @@ EOF
   	jdcloud_re-ss-01|\
     jdcloud_re-cs-02|\
     jdcloud_re-cs-07)
-      cat_usb_net $1
+      cat_usb_net $config_file
   		;;
   esac
   #增加ebpf
-  cat_ebpf_config $1
+  cat_ebpf_config $config_file
 
 }
 
