@@ -1,5 +1,5 @@
 #CI项目
-name: ipq60xx-LiBwrt-6.12-NOWIFI
+name: IPQ807X-LiBwrt-6.12-NOWIFI
 
 #CI计划
 on:
@@ -32,7 +32,7 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        TARGET: [jdcloud_re-ss-01, jdcloud_re-cs-02, jdcloud_re-cs-07, redmi_ax5-jdcloud, redmi_ax5]
+        TARGET: [xiaomi_ax3600-stock, redmi_ax6-stock]
         SOURCE: [davidtall/LiBwrt-openwrt-6.x]
         BRANCH: [kernel-6.12]
 
@@ -66,4 +66,4 @@ jobs:
 
       CI_NAME: ${{github.workflow}}
 
-      WRT_ARCH: "qualcommax_ipq60xx"
+      WRT_ARCH: "qualcommax_ipq807x"

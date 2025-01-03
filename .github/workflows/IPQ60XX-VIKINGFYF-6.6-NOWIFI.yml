@@ -1,5 +1,5 @@
 #CI项目
-name: ipq60xx-VIKINGFYF-6.6-NOWIFI
+name: IPQ60XX-VIKINGFYF-6.6-NOWIFI
 
 #CI计划
 on:

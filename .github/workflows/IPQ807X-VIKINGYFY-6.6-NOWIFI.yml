@@ -1,5 +1,5 @@
 #CI项目
-name: ipq807x-VIKINGFYF-6.6-NOWIFI
+name: IPQ807X-VIKINGFYF-6.6-NOWIFI
 #CI计划
 on:
   #自动编译：当Auto-Clean运行完成后
