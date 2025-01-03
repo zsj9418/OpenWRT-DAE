@@ -136,11 +136,11 @@ function generate_config() {
   }
   config_target=$(echo $WRT_ARCH | cut -d'_' -f1)
   cat >> $1 <<EOF
-  CONFIG_TARGET_$(echo $WRT_ARCH | cut -d'_' -f1)=y
-  CONFIG_TARGET_${WRT_ARCH}=y
-  CONFIG_TARGET_MULTI_PROFILE=y
-  CONFIG_TARGET_PER_DEVICE_ROOTFS=n
-  CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_${WRT_TARGET}=y
+CONFIG_TARGET_$(echo $WRT_ARCH | cut -d'_' -f1)=y
+CONFIG_TARGET_${WRT_ARCH}=y
+CONFIG_TARGET_MULTI_PROFILE=y
+CONFIG_TARGET_PER_DEVICE_ROOTFS=n
+CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_${WRT_TARGET}=y
 EOF
   cat $GITHUB_WORKSPACE/Config/GENERAL.txt >> $1
   local target=$(echo $WRT_ARCH | cut -d'_' -f2)
