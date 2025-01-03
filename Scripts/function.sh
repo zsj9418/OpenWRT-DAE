@@ -79,6 +79,7 @@ fi
 function cat_ipq60xx_nowifi() {
 cat >> $1 <<EOF
 #去除WIFI
+CONFIG_PACKAGE_ipq-wifi-${WRT_TARGET}=n
 # CONFIG_DRIVER_11AC_SUPPORT is not set
 # CONFIG_DRIVER_11AX_SUPPORT is not set
 # CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE is not set
@@ -95,12 +96,14 @@ cat >> $1 <<EOF
 # CONFIG_PACKAGE_wpad-openssl is not set
 # CONFIG_PACKAGE_ath11k-firmware-ipq6018 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qcn9074 is not set
+
 EOF
 }
 
 function cat_ipq807x_nowifi() {
 cat >> $1 <<EOF
 #去除WIFI
+CONFIG_PACKAGE_ipq-wifi-${WRT_TARGET}=n
 # CONFIG_DRIVER_11AC_SUPPORT is not set
 # CONFIG_DRIVER_11AX_SUPPORT is not set
 # CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE is not set
