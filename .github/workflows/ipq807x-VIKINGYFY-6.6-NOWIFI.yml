@@ -1,6 +1,5 @@
 #CI项目
-name: QCA-6.12-NO-WIFI
-
+name: ipq807x-VIKINGFYF-6.6-NOWIFI
 #CI计划
 on:
   #自动编译：当Auto-Clean运行完成后
@@ -32,8 +31,8 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        TARGET: [IPQ-6.12-JDC-Arthur-NOWIFI, IPQ-6.12-JDC-Athena-NOWIFI, IPQ-6.12-JDC-ER1-NOWIFI, IPQ-6.12-RedmiAX5-NOWIFI, IPQ-6.12-RedmiAX5JDC-NOWIFI]
-        SOURCE: [davidtall/immortalwrt-6.12]
+        TARGET: [xiaomi_ax3600-stock, redmi_ax6-stock]
+        SOURCE: [VIKINGYFY/immortalwrt]
         BRANCH: [main]
 
     #调用公用编译核心WRT-CORE.yml
@@ -65,3 +64,5 @@ jobs:
       WRT_TEST: ${{inputs.TEST}}
 
       CI_NAME: ${{github.workflow}}
+
+      WRT_ARCH: "qualcommax_ipq807x"

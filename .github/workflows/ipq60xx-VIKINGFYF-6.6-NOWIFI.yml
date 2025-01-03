@@ -1,5 +1,5 @@
 #CI项目
-name: QCA-NO-WIFI
+name: ipq60xx-VIKINGFYF-6.6-NOWIFI
 
 #CI计划
 on:
@@ -32,12 +32,12 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        TARGET: [IPQ-JDC-Arthur-NOWIFI, IPQ-RedmiAX5JDC-NOWIFI, IPQ-Xiaomi-AX3600-NOWIFI]
+        TARGET: [jdcloud_re-ss-01, jdcloud_re-cs-02, jdcloud_re-cs-07, redmi_ax5-jdcloud, redmi_ax5]
         SOURCE: [VIKINGYFY/immortalwrt]
         BRANCH: [main]
 
     #调用公用编译核心WRT-CORE.yml
-    uses: ./.github/workflows/WRT-CORE.yml
+    uses: ./.github/workflows/WRT-CORE-TEST.yml
     with:
       #编译平台
       WRT_TARGET: ${{matrix.TARGET}}
@@ -63,4 +63,7 @@ jobs:
       WRT_PACKAGE: ${{inputs.PACKAGE}}
       #仅输出配置文件
       WRT_TEST: ${{inputs.TEST}}
+
       CI_NAME: ${{github.workflow}}
+
+      WRT_ARCH: "qualcommax_ipq60xx"
