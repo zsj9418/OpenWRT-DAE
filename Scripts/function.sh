@@ -138,7 +138,6 @@ function generate_config() {
   }
   config_target=$(echo $WRT_ARCH | cut -d'_' -f1)
   cat >> $config_file <<EOF
-#CMIOT GLINET LINKSYS QIHOO REDMI XIAOMI ZN JDCLOUD
 CONFIG_TARGET_$(echo $WRT_ARCH | cut -d'_' -f1)=y
 CONFIG_TARGET_${WRT_ARCH}=y
 CONFIG_TARGET_MULTI_PROFILE=y
