@@ -130,7 +130,7 @@ function change_nss_version() {
 function generate_config() {
 
   #如配置文件已存在
-  [[ -f $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt ]]] && {
+  [[ -f $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt ]] && {
     cat $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt  >> $1
     return 0;
   }
