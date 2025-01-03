@@ -129,15 +129,22 @@ function change_nss_version() {
 
 function generate_config() {
 
-  local target=$(echo $CI_NAME | cut -d'-' -f1)
-  cat >> $1 << EOF
-CONFIG_TARGET_qualcommax=y
-CONFIG_TARGET_qualcommax_${target}=y
-CONFIG_TARGET_MULTI_PROFILE=y
-CONFIG_TARGET_PER_DEVICE_ROOTFS=n
-CONFIG_TARGET_DEVICE_qualcommax_${target}_DEVICE_${WRT_TARGET}=y
+  #如配置文件已存在
+  [[ -f $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt ]]] && {
+    cat $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt  >> $1
+    return 0;
+  }
+
+  cat >> $1 <<EOF
+  CONFIG_TARGET_$(echo $WRT_ARCH | cut -d'_' -f1)=y
+  CONFIG_TARGET_${$WRT_ARCH}=y
+  CONFIG_TARGET_MULTI_PROFILE=y
+  CONFIG_TARGET_PER_DEVICE_ROOTFS=n
+  CONFIG_TARGET_DEVICE_${$WRT_ARCH}_DEVICE_${WRT_TARGET}=y
 EOF
   cat $GITHUB_WORKSPACE/Config/GENERAL.txt >> $1
+  local target=$(echo $WRT_ARCH | cut -d'_' -f2)
+
   #增加wifi 驱动
   if [[ "$CI_NAME" == *"NOWIFI"* ]]; then
     case "$target" in
