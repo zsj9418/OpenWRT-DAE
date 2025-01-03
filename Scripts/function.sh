@@ -78,6 +78,7 @@ fi
 
 function cat_ipq60xx_nowifi() {
 cat >> $1 <<EOF
+#去除WIFI
 # CONFIG_DRIVER_11AC_SUPPORT is not set
 # CONFIG_DRIVER_11AX_SUPPORT is not set
 # CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE is not set
@@ -99,7 +100,7 @@ EOF
 
 function cat_ipq807x_nowifi() {
 cat >> $1 <<EOF
-#WIFI驱动
+#去除WIFI
 # CONFIG_DRIVER_11AC_SUPPORT is not set
 # CONFIG_DRIVER_11AX_SUPPORT is not set
 # CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE is not set
