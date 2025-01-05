@@ -147,6 +147,11 @@ CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=n
 CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_${WRT_TARGET}=y
 EOF
+
+  if [[ "$CI_NAME" == *"IPQ60XX-6.12"* ]]; then
+    cat $GITHUB_WORKSPACE/Config/ipq60xx-6.12-nowifi.config >> $config_file
+  fi
+
   cat $GITHUB_WORKSPACE/Config/GENERAL.txt >> $config_file
   local target=$(echo $WRT_ARCH | cut -d'_' -f2)
 
