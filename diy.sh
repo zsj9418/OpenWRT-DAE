@@ -14,7 +14,7 @@ if [ -n "$1" ]; then
     export WRT_TARGET="$1"
 else
     # 如果没有传递参数，设置默认值
-    export WRT_TARGET="Config/JDC-AX1800-PRO-WIFI-NO.txt"
+    export WRT_TARGET="jdcloud_re-ss-01"
 fi
 
 if [ -n "$2" ]; then
@@ -32,8 +32,10 @@ export WRT_WORD='12345678'
 export WRT_THEME='argon'
 export WRT_IP='192.168.10.1'
 export WRT_CI='WSL-OpenWRT-CI'
+export WRT_ARCH='qualcommax_ipq60xx'
+export CI_NAME='IPQ60XX-6.12-LiBwrt-NOWIFI.yml'
 
-
+. $GITHUB_WORKSPACE/Scripts/function.sh
 
 if [ ! -d $WRT_DIR ]; then
   git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO $WRT_DIR
@@ -53,7 +55,9 @@ cd package/
 $GITHUB_WORKSPACE/Scripts/Packages.sh
 $GITHUB_WORKSPACE/Scripts/Handles.sh
 cd ..
-cat $GITHUB_WORKSPACE/$WRT_TARGET $GITHUB_WORKSPACE/Config/GENERAL.txt > .config
+
+generate_config
+
 $GITHUB_WORKSPACE/Scripts/Settings.sh
 
 make defconfig
