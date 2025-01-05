@@ -1,5 +1,6 @@
 #CI项目
-name: IPQ807X-6.6-NOWIFI-VIKINGFYF
+name: IPQ60XX-6.12-NOWIFI-VIKINGYFY
+
 #CI计划
 on:
   #自动编译：当Auto-Clean运行完成后
@@ -31,8 +32,8 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        TARGET: [xiaomi_ax3600-stock, redmi_ax6-stock]
-        SOURCE: [VIKINGYFY/immortalwrt]
+        TARGET: [jdcloud_re-ss-01, jdcloud_re-cs-02, jdcloud_re-cs-07, redmi_ax5-jdcloud, redmi_ax5]
+        SOURCE: [davidtall/immortalwrt-6.12]
         BRANCH: [main]
 
     #调用公用编译核心WRT-CORE.yml
@@ -65,4 +66,4 @@ jobs:
 
       CI_NAME: ${{github.workflow}}
 
-      WRT_ARCH: "qualcommax_ipq807x"
+      WRT_ARCH: "qualcommax_ipq60xx"
