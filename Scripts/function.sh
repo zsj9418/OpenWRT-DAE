@@ -148,6 +148,10 @@ CONFIG_TARGET_PER_DEVICE_ROOTFS=n
 CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_${WRT_TARGET}=y
 EOF
 
+   if [[ "$RT_TARGET" == "jdcloud_re-cs-02" ]]; then
+      cat "CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_jdcloud_ax6600=y" >> $config_file
+    fi
+
   if [[ "$CI_NAME" == *"IPQ60XX-6.12"* ]]; then
     cat $GITHUB_WORKSPACE/Config/ipq60xx-6.12-nowifi.config >> $config_file
   fi
