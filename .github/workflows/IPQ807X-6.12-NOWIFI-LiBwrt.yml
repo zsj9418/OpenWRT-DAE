@@ -1,5 +1,6 @@
 #CI项目
-name: IPQ807X-VIKINGFYF-6.6-NOWIFI
+name: IPQ807X-6.12-NOWIFI-LiBwrt
+
 #CI计划
 on:
   #自动编译：当Auto-Clean运行完成后
@@ -32,8 +33,8 @@ jobs:
       #max-parallel: 3
       matrix:
         TARGET: [xiaomi_ax3600-stock, redmi_ax6-stock]
-        SOURCE: [VIKINGYFY/immortalwrt]
-        BRANCH: [main]
+        SOURCE: [davidtall/LiBwrt-openwrt-6.x]
+        BRANCH: [kernel-6.12]
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/WRT-CORE.yml
