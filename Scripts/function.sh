@@ -149,7 +149,7 @@ CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_${WRT_TARGET}=y
 EOF
 
    if [[ "$WRT_TARGET" == "jdcloud_re-cs-02" ]]; then
-      cat "CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_jdcloud_ax6600=y" >> $config_file
+      echo "CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_jdcloud_ax6600=y" >> $config_file
    fi
 
   if [[ "$CI_NAME" == *"IPQ60XX-6.12"* ]]; then
