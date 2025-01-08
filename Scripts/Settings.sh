@@ -51,10 +51,6 @@ mkdir -p $vlmcsd_patches && cp -f ../patches/001-fix_compile_with_ccache.patch $
 #sed -i "s/Interface/DirectInterface/" ./package/network/services/dropbear/files/dropbear.config
 sed -i "/Interface/d" ./package/network/services/dropbear/files/dropbear.config
 
-#修改字体
-#sed -i '/\.main \.main-left \.nav li a \{/,/\}/ { /font-weight: bolder/d; }' yourfile.css
-#sed -i '/\[data-page="admin-system-opkg"\] #maincontent>\.container \{/,/\}/ s/font-weight: 600;/font-weight: normal;/g' yourfile.css
-
 #配置文件修改
 #echo "CONFIG_PACKAGE_luci=y" >> ./.config
 #echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
