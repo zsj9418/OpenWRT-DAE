@@ -88,7 +88,7 @@ function generate_config() {
     remove_wifi $target
   fi
 
-  set_nss_driver $config_file
+  #set_nss_driver $config_file
   cat_usb_net $config_file
   #增加ebpf
   cat_ebpf_config $config_file
