@@ -1,16 +1,13 @@
 #6.12无wifi模板
 CONFIG_TARGET_qualcommax=y
-CONFIG_TARGET_qualcommax_ipq60xx=y
+CONFIG_TARGET_qualcommax_ipq807x=y
 CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 #设备列表
-CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_cmiot_ax18=y
-CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-ss-01=y
-CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-02=y
-CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_jdcloud_re-cs-07=y
-CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_redmi_ax5=y
-CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_redmi_ax5-jdcloud=y
-CONFIG_TARGET_DEVICE_qualcommax_ipq60xx_DEVICE_zn_m2=y
+CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_redmi_ax6-stock=y
+CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_redmi_ax6=y
+CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax3600-stock=y
+CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_xiaomi_ax3600=y
 
 # CONFIG_ATH11K_NSS_SUPPORT is not set
 CONFIG_COREMARK_ENABLE_MULTITHREADING=y
@@ -261,9 +258,11 @@ CONFIG_SING_BOX_BUILD_WIREGUARD=y
 # CONFIG_DRIVER_11AX_SUPPORT is not set
 # CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE is not set
 # CONFIG_PACKAGE_hostapd-common is not set
+# CONFIG_PACKAGE_MAC80211_MESH is not set
 # CONFIG_PACKAGE_iw is not set
 # CONFIG_PACKAGE_iwinfo is not set
 # CONFIG_PACKAGE_kmod-ath is not set
+# CONFIG_PACKAGE_kmod-ath10k-smallbuffers is not set
 # CONFIG_PACKAGE_kmod-ath11k is not set
 # CONFIG_PACKAGE_kmod-ath11k-ahb is not set
 # CONFIG_PACKAGE_kmod-ath11k-pci is not set
@@ -272,15 +271,8 @@ CONFIG_SING_BOX_BUILD_WIREGUARD=y
 # CONFIG_PACKAGE_wifi-scripts is not set
 # CONFIG_PACKAGE_wireless-regdb is not set
 # CONFIG_PACKAGE_wpad-openssl is not set
-# CONFIG_PACKAGE_ath11k-firmware-ipq6018 is not set
+# CONFIG_PACKAGE_ath10k-board-qca9887 is not set
+# CONFIG_PACKAGE_ath10k-firmware-qca9887 is not set
+# CONFIG_PACKAGE_ath11k-firmware-ipq8074 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qcn9074 is not set
-
-#ipq-wifi
-CONFIG_PACKAGE_ipq-wifi-cmiot_ax18=n
-CONFIG_PACKAGE_ipq-wifi-jdcloud_re-ss-01=n
-CONFIG_PACKAGE_ipq-wifi-jdcloud_re-cs-02=n
-CONFIG_PACKAGE_ipq-wifi-jdcloud_re-cs-07=n
-CONFIG_PACKAGE_ipq-wifi-redmi_ax5=n
-CONFIG_PACKAGE_ipq-wifi-redmi_ax5-jdcloud=n
-CONFIG_PACKAGE_ipq-wifi-zn_m2=n
 

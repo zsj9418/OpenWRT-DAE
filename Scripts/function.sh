@@ -73,8 +73,21 @@ fi
 }
 
 function set_nss_driver() {
-    echo "CONFIG_NSS_FIRMWARE_VERSION_11_4=n" >> $1
-    echo "CONFIG_NSS_FIRMWARE_VERSION_12_2=y" >> $1
+  cat >> $1 <<EOF
+#NSS驱动相关
+CONFIG_NSS_FIRMWARE_VERSION_11_4=n
+CONFIG_NSS_FIRMWARE_VERSION_12_2=y
+CONFIG_PACKAGE_kmod-qca-nss-dp=y
+CONFIG_PACKAGE_kmod-qca-nss-drv=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-bridge-mgr=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-igs=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-map-t=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-pppoe=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-pptp=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-qdisc=y
+CONFIG_PACKAGE_kmod-qca-nss-ecm=y
+CONFIG_PACKAGE_kmod-qca-nss-macsec=y
+EOF
 }
 
 function generate_config() {
@@ -88,7 +101,7 @@ function generate_config() {
     remove_wifi $target
   fi
 
-  #set_nss_driver $config_file
+  set_nss_driver $config_file
   cat_usb_net $config_file
   #增加ebpf
   cat_ebpf_config $config_file
@@ -105,9 +118,11 @@ function remove_wifi() {
   sed -i 's/\(ath11k-firmware-[^ ]*\|ipq-wifi-[^ ]*\|kmod-ath11k-[^ ]*\)//g' ./target/linux/qualcommax/Makefile
   sed -i 's/\(ath11k-firmware-[^ ]*\|ipq-wifi-[^ ]*\|kmod-ath11k-[^ ]*\)//g' ./target/linux/qualcommax/${target}/target.mk
   sed -i 's/\(ath11k-firmware-[^ ]*\|ipq-wifi-[^ ]*\|kmod-ath11k-[^ ]*\)//g' ./target/linux/qualcommax/image/${target}.mk
+  sed -i 's/\(ath10k-firmware-[^ ]*\|kmod-ath10k [^ ]*\|kmod-ath10k-[^ ]*\)//g' ./target/linux/qualcommax/image/${target}.mk
   #删除无线组件
-  rm -rf ./package/network/services/hostapd
+  rm -rf package/network/services/hostapd
   rm -rf package/firmware/ipq-wifi
+  rm -rf package/network/utils/iwinfo
 }
 
 function set_kernel_size() {
