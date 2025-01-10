@@ -274,3 +274,12 @@ CONFIG_SING_BOX_BUILD_WIREGUARD=y
 # CONFIG_PACKAGE_ath11k-firmware-ipq6018 is not set
 # CONFIG_PACKAGE_ath11k-firmware-qcn9074 is not set
 
+#ipq-wifi
+CONFIG_PACKAGE_ipq-wifi-cmiot_ax18=n
+CONFIG_PACKAGE_ipq-wifi-jdcloud_re-ss-01=n
+CONFIG_PACKAGE_ipq-wifi-jdcloud_re-cs-02=n
+CONFIG_PACKAGE_ipq-wifi-jdcloud_re-cs-07=n
+CONFIG_PACKAGE_ipq-wifi-redmi_ax5=n
+CONFIG_PACKAGE_ipq-wifi-redmi_ax5-jdcloud=n
+CONFIG_PACKAGE_ipq-wifi-zn_m2=n
+
