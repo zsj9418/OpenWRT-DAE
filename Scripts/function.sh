@@ -46,11 +46,7 @@ CONFIG_PACKAGE_kmod-xdp-sockets-diag=y
 EOF
 }
 
-
-
 function cat_usb_net() {
-
-
   cat >> $1 <<EOF
 #USB CPE Driver
 CONFIG_PACKAGE_kmod-usb-net=y
@@ -76,115 +72,52 @@ fi
 
 }
 
-function cat_ipq60xx_nowifi() {
-cat >> $1 <<EOF
-#去除WIFI
-CONFIG_PACKAGE_ipq-wifi-${WRT_TARGET}=n
-# CONFIG_DRIVER_11AC_SUPPORT is not set
-# CONFIG_DRIVER_11AX_SUPPORT is not set
-# CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE is not set
-# CONFIG_PACKAGE_hostapd-common is not set
-# CONFIG_PACKAGE_iw is not set
-# CONFIG_PACKAGE_kmod-ath is not set
-# CONFIG_PACKAGE_kmod-ath11k is not set
-# CONFIG_PACKAGE_kmod-ath11k-ahb is not set
-# CONFIG_PACKAGE_kmod-ath11k-pci is not set
-# CONFIG_PACKAGE_kmod-cfg80211 is not set
-# CONFIG_PACKAGE_kmod-mac80211 is not set
-# CONFIG_PACKAGE_wifi-scripts is not set
-# CONFIG_PACKAGE_wireless-regdb is not set
-# CONFIG_PACKAGE_wpad-openssl is not set
-# CONFIG_PACKAGE_ath11k-firmware-ipq6018 is not set
-# CONFIG_PACKAGE_ath11k-firmware-qcn9074 is not set
-
-EOF
-}
-
-function cat_ipq807x_nowifi() {
-cat >> $1 <<EOF
-#去除WIFI
-CONFIG_PACKAGE_ipq-wifi-${WRT_TARGET}=n
-# CONFIG_DRIVER_11AC_SUPPORT is not set
-# CONFIG_DRIVER_11AX_SUPPORT is not set
-# CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE is not set
-# CONFIG_PACKAGE_hostapd-common is not set
-# CONFIG_PACKAGE_MAC80211_MESH is not set
-# CONFIG_PACKAGE_iw is not set
-# CONFIG_PACKAGE_kmod-ath is not set
-# CONFIG_PACKAGE_kmod-ath10k-smallbuffers is not set
-# CONFIG_PACKAGE_kmod-ath11k is not set
-# CONFIG_PACKAGE_kmod-ath11k-ahb is not set
-# CONFIG_PACKAGE_kmod-ath11k-pci is not set
-# CONFIG_PACKAGE_kmod-cfg80211 is not set
-# CONFIG_PACKAGE_kmod-mac80211 is not set
-# CONFIG_PACKAGE_wifi-scripts is not set
-# CONFIG_PACKAGE_wireless-regdb is not set
-# CONFIG_PACKAGE_wpad-openssl is not set
-# CONFIG_PACKAGE_ath10k-board-qca9887 is not set
-# CONFIG_PACKAGE_ath10k-firmware-qca9887 is not set
-# CONFIG_PACKAGE_ath11k-firmware-ipq8074 is not set
-# CONFIG_PACKAGE_ath11k-firmware-qcn9074 is not set
-EOF
-}
-function change_nss_version() {
+function set_nss_driver() {
     echo "CONFIG_NSS_FIRMWARE_VERSION_11_4=n" >> $1
     echo "CONFIG_NSS_FIRMWARE_VERSION_12_2=y" >> $1
 }
 
 function generate_config() {
-
   config_file=".config"
   #如配置文件已存在
-  [[ -f $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt ]] && {
-    cat $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt  >> $config_file
-    return 0;
-  }
-  config_target=$(echo $WRT_ARCH | cut -d'_' -f1)
-  cat >> $config_file <<EOF
-CONFIG_TARGET_$(echo $WRT_ARCH | cut -d'_' -f1)=y
-CONFIG_TARGET_${WRT_ARCH}=y
-CONFIG_TARGET_MULTI_PROFILE=y
-CONFIG_TARGET_PER_DEVICE_ROOTFS=n
-CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_${WRT_TARGET}=y
-EOF
-
-   if [[ "$WRT_TARGET" == "jdcloud_re-cs-02" ]]; then
-      echo "CONFIG_TARGET_DEVICE_${WRT_ARCH}_DEVICE_jdcloud_ax6600=y" >> $config_file
-   fi
-
-  if [[ "$CI_NAME" == *"IPQ60XX-6.12"* ]]; then
-    cat $GITHUB_WORKSPACE/Config/ipq60xx-6.12-nowifi.config >> $config_file
-  fi
-
-  cat $GITHUB_WORKSPACE/Config/GENERAL.txt >> $config_file
+  cat $GITHUB_WORKSPACE/Config/${WRT_TARGET}.txt $GITHUB_WORKSPACE/Config/GENERAL.txt  >> $config_file
   local target=$(echo $WRT_ARCH | cut -d'_' -f2)
 
-  #增加wifi 驱动
-  if [[ "$CI_NAME" == *"NOWIFI"* ]]; then
-    case "$target" in
-    	ipq60xx)
-    	  cat_ipq60xx_nowifi $config_file
-    	  change_nss_version $config_file
-    	;;
-     ipq807x)
-       cat_ipq807x_nowifi $config_file
-       change_nss_version $config_file
-      ;;
-    esac
-  else
-    echo ""
+  #删除wifi依赖
+  if [[ "$WRT_TARGET" == *"NOWIFI"* ]]; then
+    remove_wifi $target
   fi
 
-  case "$WRT_TARGET" in
-  	jdcloud_re-ss-01|\
-    jdcloud_re-cs-02|\
-    jdcloud_re-cs-07)
-      cat_usb_net $config_file
-  		;;
-  esac
+  set_nss_driver $config_file
+  cat_usb_net $config_file
   #增加ebpf
   cat_ebpf_config $config_file
+  set_kernel_size
 
+  cat_kernel_config "target/linux/qualcommax/config-6.6"
+  cat_kernel_config "target/linux/qualcommax/config-6.12"
 }
+
+
+function remove_wifi() {
+  local target=$1
+  #去除依赖
+  sed -i 's/\(ath11k-firmware-[^ ]*\|ipq-wifi-[^ ]*\|kmod-ath11k-[^ ]*\)//g' ./target/linux/qualcommax/Makefile
+  sed -i 's/\(ath11k-firmware-[^ ]*\|ipq-wifi-[^ ]*\|kmod-ath11k-[^ ]*\)//g' ./target/linux/qualcommax/${target}/target.mk
+  sed -i 's/\(ath11k-firmware-[^ ]*\|ipq-wifi-[^ ]*\|kmod-ath11k-[^ ]*\)//g' ./target/linux/qualcommax/image/{target}.mk
+  #删除无线组件
+  rm -rf ./package/network/services/hostapd
+  rm -rf package/firmware/ipq-wifi
+}
+
+function set_kernel_size() {
+  #修改jdc ax1800 pro 的内核大小为12M
+  image_file='./target/linux/qualcommax/image/ipq60xx.mk'
+  sed -i "/^define Device\/jdcloud_re-ss-01/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
+  sed -i "/^define Device\/jdcloud_re-cs-02/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
+  sed -i "/^define Device\/jdcloud_re-cs-07/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
+  sed -i "/^define Device\/redmi_ax5-jdcloud/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
+}
+
 
 

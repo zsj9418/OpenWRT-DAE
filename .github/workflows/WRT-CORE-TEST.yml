@@ -110,5 +110,5 @@ jobs:
           . $GITHUB_WORKSPACE/Scripts/function.sh
           cd ./wrt/
           rm -rf ./tmp* ./.config*  
-          generate_config ".config"
+          generate_config
           cat .config
