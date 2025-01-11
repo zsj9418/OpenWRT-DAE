@@ -122,7 +122,6 @@ function remove_wifi() {
   #删除无线组件
   rm -rf package/network/services/hostapd
   rm -rf package/firmware/ipq-wifi
-  rm -rf package/network/utils/iwinfo
 }
 
 function set_kernel_size() {
