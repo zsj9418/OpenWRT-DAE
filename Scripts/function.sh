@@ -23,8 +23,13 @@ CONFIG_BPF_EVENTS=y
 CONFIG_SCHED_CLASS_EXT=y
 CONFIG_PROBE_EVENTS_BTF_ARGS=y
 CONFIG_IMX_SCMI_MISC_DRV=y
+CONFIG_ARM64_CONTPTE=y
+CONFIG_TRANSPARENT_HUGEPAGE=y
+CONFIG_TRANSPARENT_HUGEPAGE_ALWAYS=y
+# CONFIG_TRANSPARENT_HUGEPAGE_MADVISE is not set
+# CONFIG_TRANSPARENT_HUGEPAGE_NEVER is not set
 EOF
-    echo "add_kernel_config to $1 done"
+    echo "cat_kernel_config to $1 done"
   fi
 }
 
@@ -106,9 +111,8 @@ function generate_config() {
   #增加ebpf
   cat_ebpf_config $config_file
   set_kernel_size
-
-  cat_kernel_config "target/linux/qualcommax/config-6.6"
-  cat_kernel_config "target/linux/qualcommax/config-6.12"
+  #增加内核选项
+  cat_kernel_config "target/linux/qualcommax/${target}/config-default"
 }
 
 
