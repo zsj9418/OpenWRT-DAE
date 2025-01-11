@@ -95,6 +95,9 @@ CONFIG_PACKAGE_kmod-qca-nss-ecm=y
 CONFIG_PACKAGE_kmod-qca-nss-macsec=y
 EOF
 }
+function kernel_version() {
+  echo $(sed -n 's/^KERNEL_PATCHVER:=\(.*\)/\1/p' target/linux/qualcommax/Makefile)
+}
 
 function generate_config() {
   config_file=".config"
@@ -114,6 +117,10 @@ function generate_config() {
   set_kernel_size
   #增加内核选项
   cat_kernel_config "target/linux/qualcommax/${target}/config-default"
+  if [[ $(kernel_version) == "6.12" ]]; then
+    rm -rf package/kernel/mac80211/patches/build/140-trace_backport.patch
+    echo "delete 140-trace_backport.patch successfully"
+  fi
 }
 
 
@@ -137,6 +144,7 @@ function set_kernel_size() {
   sed -i "/^define Device\/jdcloud_re-cs-07/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
   sed -i "/^define Device\/redmi_ax5-jdcloud/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
 }
+
 
 
 
