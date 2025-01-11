@@ -11,10 +11,11 @@ WRT_BRANCH='main'
 
 if [ -n "$1" ]; then
     # 如果有传递参数，赋值给WRT_TARGET
-    export WRT_TARGET="$1"
+    filename=$(basename "$1")
+    export WRT_TARGET="${filename%.*}"
 else
     # 如果没有传递参数，设置默认值
-    export WRT_TARGET="jdcloud_re-ss-01"
+    export WRT_TARGET="IPQ60XX-6.12-NOWIFI"
 fi
 
 if [ -n "$2" ]; then
@@ -32,8 +33,8 @@ export WRT_WORD='12345678'
 export WRT_THEME='argon'
 export WRT_IP='192.168.10.1'
 export WRT_CI='WSL-OpenWRT-CI'
-export WRT_ARCH='qualcommax_ipq60xx'
-export CI_NAME='IPQ60XX-6.12-LiBwrt-NOWIFI.yml'
+export WRT_ARCH=$(sed -n 's/.*_DEVICE_\(.*\)_DEVICE_.*/\1/p' $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt | head -n 1)
+export CI_NAME='QCA-6.12-LiBwrt'
 
 . $GITHUB_WORKSPACE/Scripts/function.sh
 
