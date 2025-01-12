@@ -80,16 +80,12 @@ jobs:
           swap-storage: true
           tool-cache: true
 
-      - name: Freeing up disk space
-        uses: easimon/maximize-build-space@master
+      - name: Free disk space
+        uses: sbwml/actions@free-disk
         with:
-          root-reserve-mb: 4096
-          swap-size-mb: 1024
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
+          root-reserve-gb: 4
+          swap-size-gb: 4
+
       - name: Checkout Projects
         uses: actions/checkout@main
 
@@ -117,6 +113,7 @@ jobs:
         working-directory: ./
         run: |
           pwd
+          df -hT
           git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO ./wrt/
 
           cd ./wrt/ && echo "WRT_HASH=$(git log -1 --pretty=format:'%h')" >> $GITHUB_ENV
