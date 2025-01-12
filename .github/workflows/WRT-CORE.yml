@@ -195,8 +195,8 @@ jobs:
       - name: Compile Firmware
         if: env.WRT_TEST != 'true'
         run: |
+          df -hT
           cd ./wrt/
-
           make -j$(nproc) || make -j1 V=s
 
       - name: Machine Information
