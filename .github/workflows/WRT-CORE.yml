@@ -213,10 +213,15 @@ jobs:
 
             TYPE=$(echo $WRT_ARCH | cut -d'_' -f1)
             for FILE in $(find ./bin/targets/ -type f -iname "*$TYPE*.*") ; do
-                EXT=$(basename $FILE | cut -d '.' -f 2-)
-                NAME=$(basename $FILE | cut -d '.' -f 1 | grep -io "\($TYPE\).*")
-                NEW_FILE="$WRT_TARGET"_"$NAME"_"$WRT_DATE"."$EXT"
-                mv -f $FILE ./upload/$NEW_FILE
+                if [[ "$FILE" == *"initramfs"* ]]; then
+                  rm -f "$FILE"
+                  echo "delete $FILE"
+                else
+                  EXT=$(basename $FILE | cut -d '.' -f 2-)
+                  NAME=$(basename $FILE | cut -d '.' -f 1 | grep -io "\($TYPE\).*")
+                  NEW_FILE="$WRT_TARGET"_"$NAME"_"$WRT_DATE"."$EXT"
+                  mv -f $FILE ./upload/$NEW_FILE                
+                fi
             done
             find ./bin/targets/ -type f -exec mv -f {} ./upload/ \;
           fi
