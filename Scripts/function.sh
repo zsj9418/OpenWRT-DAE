@@ -76,6 +76,8 @@ CONFIG_PACKAGE_kmod-qca-nss-drv-pptp=y
 CONFIG_PACKAGE_kmod-qca-nss-drv-qdisc=y
 CONFIG_PACKAGE_kmod-qca-nss-ecm=y
 CONFIG_PACKAGE_kmod-qca-nss-macsec=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-l2tpv2=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-lag-mgr=y
 EOF
 }
 function kernel_version() {
@@ -101,6 +103,13 @@ function set_kernel_size() {
   sed -i "/^define Device\/jdcloud_re-cs-07/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
   sed -i "/^define Device\/redmi_ax5-jdcloud/,/^endef/ { /KERNEL_SIZE := 6144k/s//KERNEL_SIZE := 12288k/ }" $image_file
 }
+#开启内存回收补丁
+function enable_skb_recycler() {
+  cat >> $1 <<EOF
+CONFIG_KERNEL_SKB_RECYCLER=y
+CONFIG_KERNEL_SKB_RECYCLER_MULTI_CPU=y
+EOF
+}
 
 function generate_config() {
   config_file=".config"
@@ -117,11 +126,11 @@ function generate_config() {
   cat_usb_net $config_file
   #增加ebpf
   cat_ebpf_config $config_file
+  enable_skb_recycler $config_file
   set_kernel_size
   #增加内核选项
   cat_kernel_config "target/linux/qualcommax/${target}/config-default"
   if [[ $(kernel_version) == "6.12" ]]; then
-    rm -rf package/kernel/mac80211/patches/build/140-trace_backport.patch
     echo "delete 140-trace_backport.patch done!"
   fi
 }
