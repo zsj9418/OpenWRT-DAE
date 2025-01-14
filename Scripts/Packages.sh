@@ -88,7 +88,7 @@ rm -rf small/luci-app-bypass
 #版本号修复
 sed -i 's/-\(\$(PKG_RELEASE)\)/.\1/g' small/v2ray-geodata/Makefile
 rm -rf luci-app-pushbot && git clone https://github.com/zzsj0928/luci-app-pushbot luci-app-pushbot
-rm -rf luci-app-filemanager && git clone https://github.com/sbwml/luci-app-filemanager
+#rm -rf luci-app-filemanager && git clone https://github.com/sbwml/luci-app-filemanager
 
 #删除官方的默认插件
 rm -rf ../feeds/luci/applications/luci-app-{passwall*,mosdns,dockerman,dae*,bypass*}
