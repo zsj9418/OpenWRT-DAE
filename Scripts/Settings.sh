@@ -42,6 +42,8 @@ mkdir -p $vlmcsd_patches && cp -f ../patches/001-fix_compile_with_ccache.patch $
 #修复dropbear
 #sed -i "s/Interface/DirectInterface/" ./package/network/services/dropbear/files/dropbear.config
 sed -i "/Interface/d" ./package/network/services/dropbear/files/dropbear.config
+#拷贝files 文件夹到编译目录
+cp -r ../files ./
 
 #配置文件修改
 #echo "CONFIG_PACKAGE_luci=y" >> ./.config
