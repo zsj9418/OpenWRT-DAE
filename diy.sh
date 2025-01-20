@@ -1,13 +1,13 @@
 #!/bin/bash
 
-#WRT_REPO='https://github.com/davidtall/LiBwrt-openwrt-6.x'
-#WRT_BRANCH='kernel-6.12'
+WRT_REPO='https://github.com/LiBwrt/openwrt-6.x'
+WRT_BRANCH='kernel-6.12'
 
 #WRT_REPO='https://github.com/davidtall/immortalwrt-6.12'
 #WRT_BRANCH='main'
 
-WRT_REPO='https://github.com/VIKINGYFY/immortalwrt'
-WRT_BRANCH='main'
+#WRT_REPO='https://github.com/VIKINGYFY/immortalwrt'
+#WRT_BRANCH='main'
 
 if [ -n "$1" ]; then
     # 如果有传递参数，赋值给WRT_TARGET
