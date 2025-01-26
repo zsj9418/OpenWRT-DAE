@@ -80,17 +80,23 @@ UPDATE_VERSION() {
 UPDATE_VERSION "sing-box"
 UPDATE_VERSION "tailscale"
 
-#删除官方的默认插件
-rm -rf ../feeds/luci/applications/luci-app-{passwall*,mosdns,dockerman,dae*,bypass*}
-rm -rf ../feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*,sing-box,geoview}
+
 
 rm -rf small && git clone https://github.com/davidtall/small small
 rm -rf small/{luci-app-bypass,v2ray-geodata}
 rm -rf luci-app-pushbot && git clone https://github.com/zzsj0928/luci-app-pushbot luci-app-pushbot
 
+mv ../feeds/packages/net/
+
+#删除官方的默认插件
+rm -rf ../feeds/luci/applications/luci-app-{passwall*,mosdns,dockerman,dae*,bypass*}
+rm -rf ../feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*,sing-box,geoview}
+
 #增强版v2ray-geodata
-git clone https://github.com/sbwml/v2ray-geodata
-sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' ./v2ray-geodata/Makefile
+#git clone https://github.com/sbwml/v2ray-geodata
+#sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' ./v2ray-geodata/Makefile
+
+cp -r $GITHUB_WORKSPACE/package/* ./
 
 #coremark修复
 sed -i 's/mkdir \$(PKG_BUILD_DIR)\/\$(ARCH)/mkdir -p \$(PKG_BUILD_DIR)\/\$(ARCH)/g' ../feeds/packages/utils/coremark/Makefile
