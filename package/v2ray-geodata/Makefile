@@ -60,9 +60,9 @@ define Package/v2ray-geosite/install
 	$(INSTALL_DIR) $(1)/usr/share/v2ray
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/geosite.dat $(1)/usr/share/v2ray/geosite.dat
 	$(INSTALL_DIR) $(1)/bin
-    $(INSTALL_BIN) ./v2ray-geodata-updater $(1)/bin/
-    $(INSTALL_DIR) $(1)/etc/uci-defaults
-    $(INSTALL_BIN) ./init.sh $(1)/etc/uci-defaults/xxx-v2ray-geodata-updater
+	$(INSTALL_BIN) ./v2ray-geodata-updater $(1)/bin/
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_BIN) ./init.sh $(1)/etc/uci-defaults/xxx-v2ray-geodata-updater
 endef
 
 $(eval $(call BuildPackage,v2ray-geoip))
