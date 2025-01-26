@@ -43,15 +43,11 @@ download_proxy() {
     fi
 }
 
-log "fetching geoip url..."
 #GEOIP_URL=$(curl -sL https://api.github.com/repos/v2ray/geoip/releases/latest | jq -r '.assets[].browser_download_url')
 GEOIP_URL="https://github.com/Loyalsoldier/geoip/releases/latest/download/geoip.dat"
-log "geoip url: $GEOIP_URL"
 
-log "fetching geosite url..."
 #GEOSITE_URL=$(curl -sL https://api.github.com/repos/v2ray/domain-list-community/releases/latest | jq -r '.assets[].browser_download_url')
 GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
-log "geosite url: $GEOSITE_URL"
 
 GEOIP_PATH=/usr/share/v2ray/geoip.dat
 GEOSITE_PATH=/usr/share/v2ray/geosite.dat
