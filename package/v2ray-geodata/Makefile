@@ -39,7 +39,7 @@ endef
 
 define Package/v2ray-geodata-updater
   $(call Package/v2ray-geodata/default)
-  TITLE:=Geosite Updater for V2Ray
+  TITLE:=Geodata Updater for V2Ray
   LICENSE:=GPL-3.0
 endef
 

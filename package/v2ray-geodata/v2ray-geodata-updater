@@ -18,7 +18,7 @@ https://ghps.cc
 # 定义下载函数
 download_proxy() {
     url="$1"  # 传入的原始 URL
-    path="$2"  # 传入的原始 URL
+    path="$2"  # 保存路径
     success=false
 
     # 遍历所有代理源
