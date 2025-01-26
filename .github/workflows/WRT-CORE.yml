@@ -148,6 +148,7 @@ jobs:
 
           mkdir -p ./wrt/tmp && echo "1" > ./wrt/tmp/.build
           echo "toolchain skiped done!"
+          gh cache delete ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
 
       - name: Update Feeds
         run: |
