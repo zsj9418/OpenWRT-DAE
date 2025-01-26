@@ -37,6 +37,12 @@ define Package/v2ray-geosite
   LICENSE:=GPL-3.0
 endef
 
+define Package/v2ray-geodata-updater
+  $(call Package/v2ray-geodata/default)
+  TITLE:=Geosite Updater for V2Ray
+  LICENSE:=GPL-3.0
+endef
+
 GEOIP_URL:=https://github.com/Loyalsoldier/geoip/releases/latest/download/geoip.dat
 GEOSITE_URL:=https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
 
@@ -65,5 +71,13 @@ define Package/v2ray-geosite/install
 	$(INSTALL_BIN) ./init.sh $(1)/etc/uci-defaults/xxx-v2ray-geodata-updater
 endef
 
+define Package/v2ray-geodata-updater/install
+	$(INSTALL_DIR) $(1)/bin
+	$(INSTALL_BIN) ./v2ray-geodata-updater $(1)/bin/
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_BIN) ./init.sh $(1)/etc/uci-defaults/xxx-v2ray-geodata-updater
+endef
+
 $(eval $(call BuildPackage,v2ray-geoip))
 $(eval $(call BuildPackage,v2ray-geosite))
+$(eval $(call BuildPackage,v2ray-geodata-updater))
