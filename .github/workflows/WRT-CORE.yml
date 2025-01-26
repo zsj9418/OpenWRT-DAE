@@ -130,8 +130,9 @@ jobs:
         if: env.WRT_TEST != 'true'
         uses: actions/cache@main
         with:
-          key: ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
+          key: ${{ env.WRT_ARCH }}-${{env.WRT_TARGET}}-${{ env.CI_NAME }}
           restore-keys: |
+            ${{ env.WRT_ARCH }}-${{env.WRT_TARGET}}
             ${{ env.WRT_ARCH }}
           path: |
             ./wrt/.ccache
@@ -148,7 +149,7 @@ jobs:
 
           mkdir -p ./wrt/tmp && echo "1" > ./wrt/tmp/.build
           echo "toolchain skiped done!"
-          gh cache delete ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
+          gh cache delete ${{ env.WRT_ARCH }}-${{env.WRT_TARGET}}-${{ env.CI_NAME }}
 
       - name: Update Feeds
         run: |
