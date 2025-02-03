@@ -130,7 +130,7 @@ jobs:
         uses: HiGarfield/cachewrtbuild@main
         with:
           ccache: true
-          mixkey: ${{ env.WRT_ARCH }}-${{env.WRT_TARGET}}-${{ env.CI_NAME }}
+          mixkey: ${{ env.WRT_ARCH }}-${{ env.CI_NAME }}
           prefix: ./wrt/
 
       - name: Update Feeds
