@@ -125,32 +125,13 @@ jobs:
         run: |
           find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
 
-      - name: Check Caches
-        id: check-cache
+      - name: Cache Toolchain(缓存工具链)
         if: env.WRT_TEST != 'true'
-        uses: actions/cache@main
+        uses: HiGarfield/cachewrtbuild@main
         with:
-          key: ${{ env.WRT_ARCH }}-${{env.WRT_TARGET}}-${{ env.CI_NAME }}
-          restore-keys: |
-            ${{ env.WRT_ARCH }}-${{env.WRT_TARGET}}
-            ${{ env.WRT_ARCH }}
-          path: |
-            ./wrt/.ccache
-            ./wrt/staging_dir/host*
-            ./wrt/staging_dir/tool*
-
-      - if: ${{ steps.check-cache.outputs.cache-hit != '' }}
-        name: Hit Caches
-        continue-on-error: true
-        run: |
-          find "./wrt/staging_dir" -type d -name "stamp" -not -path "*target*" | while read -r DIR; do
-              find "$DIR" -type f -exec touch {} +
-          done
-
-          mkdir -p ./wrt/tmp && echo "1" > ./wrt/tmp/.build
-          echo "toolchain skiped done!"
-          gh cache delete ${{ env.WRT_ARCH }}-${{env.WRT_TARGET}}-${{ env.CI_NAME }}
-
+          ccache: true
+          mixkey: ${{ env.WRT_ARCH }}-${{env.WRT_TARGET}}-${{ env.CI_NAME }}
+          prefix: ${{ github.workspace }}
       - name: Update Feeds
         run: |
           cd ./wrt/
