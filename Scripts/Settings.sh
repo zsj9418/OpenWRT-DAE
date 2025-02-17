@@ -7,7 +7,7 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-m
 #添加编译日期标识
 sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ OpenWRT-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
-WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
+WIFI_SH=$(find ./target/linux/{mediatek/filogic,qualcommax}/base-files/etc/uci-defaults/ -type f -name "*set-wireless.sh")
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
 if [ -f "$WIFI_SH" ]; then
 	#修改WIFI名称
@@ -51,11 +51,11 @@ cp -r ../files ./
 
 #手动调整的插件
 if [ -n "$WRT_PACKAGE" ]; then
-	echo "$WRT_PACKAGE" >> ./.config
+	echo -e "$WRT_PACKAGE" >> ./.config
 fi
 
 #高通平台调整
-if [[ $WRT_TARGET == *"IPQ"* ]]; then
+if [[ $WRT_TARGET == *"QUALCOMMAX"* ]]; then
 	#取消nss相关feed
 	echo "CONFIG_FEED_nss_packages=n" >> ./.config
 	echo "CONFIG_FEED_sqm_scripts_nss=n" >> ./.config
