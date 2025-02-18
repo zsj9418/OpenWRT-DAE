@@ -75,7 +75,7 @@ jobs:
           general_include: ".+"
           general_exclude: |-
             ^GCC$
-            ^G\+\+$
+#            ^G\+\+$
 #            Clang
 #            LLVM
           docker_include: ".+"
