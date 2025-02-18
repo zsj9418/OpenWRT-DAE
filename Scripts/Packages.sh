@@ -69,6 +69,8 @@ UPDATE_PACKAGE "luci-app-gecoosac" "lwb1978/openwrt-gecoosac" "main"
 
 #UPDATE_PACKAGE "lazyoop" "lazyoop/networking-artifact" "main"
 
+UPDATE_PACKAGE "luci-app-daed" "QiuSimons/luci-app-daed" "master" "dae daed"
+
 if [[ $WRT_REPO != *"immortalwrt"* ]]; then
 	UPDATE_PACKAGE "qmi-wwan" "immortalwrt/wwan-packages" "master" "pkg"
 fi
@@ -113,7 +115,7 @@ UPDATE_VERSION "tailscale"
 
 
 
-rm -rf small && git clone https://github.com/davidtall/small small
+rm -rf small && git clone https://github.com/kenzok8/small small
 rm -rf small/{luci-app-bypass,v2ray-geodata}
 rm -rf luci-app-pushbot && git clone https://github.com/zzsj0928/luci-app-pushbot luci-app-pushbot
 
