@@ -122,7 +122,7 @@ rm -rf luci-app-pushbot && git clone https://github.com/zzsj0928/luci-app-pushbo
 
 #删除官方的默认插件
 rm -rf ../feeds/luci/applications/luci-app-{passwall*,mosdns,dockerman,dae*,bypass*}
-rm -rf ../feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*,sing-box,geoview}
+rm -rf ../feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*,sing-box,geoview,ddns-go}
 
 #增强版v2ray-geodata
 #git clone https://github.com/sbwml/v2ray-geodata
