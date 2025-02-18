@@ -69,7 +69,7 @@ UPDATE_PACKAGE "luci-app-gecoosac" "lwb1978/openwrt-gecoosac" "main"
 
 #UPDATE_PACKAGE "lazyoop" "lazyoop/networking-artifact" "main"
 
-UPDATE_PACKAGE "luci-app-daed" "QiuSimons/luci-app-daed" "master" "" "dae daed"
+UPDATE_PACKAGE "luci-app-daed" "QiuSimons/luci-app-daed" "master"
 
 if [[ $WRT_REPO != *"immortalwrt"* ]]; then
 	UPDATE_PACKAGE "qmi-wwan" "immortalwrt/wwan-packages" "master" "pkg"
