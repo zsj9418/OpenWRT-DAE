@@ -117,7 +117,7 @@ UPDATE_VERSION "tailscale"
 
 
 rm -rf small && git clone https://github.com/kenzok8/small small
-rm -rf small/{luci-app-bypass,v2ray-geodata}
+rm -rf small/{luci-app-bypass,v2ray-geodata,luci-app-fchomo}
 rm -rf luci-app-pushbot && git clone https://github.com/zzsj0928/luci-app-pushbot luci-app-pushbot
 
 #删除官方的默认插件
