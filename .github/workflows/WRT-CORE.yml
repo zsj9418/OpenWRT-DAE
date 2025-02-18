@@ -192,7 +192,8 @@ jobs:
         run: |
           cd ./wrt/
 
-          make -j$(nproc) || make -j1 V=s
+          make package/luci-app-daed/compile v=99
+#          make -j$(nproc) || make -j1 V=s
 
       - name: Machine Information
         run: |
