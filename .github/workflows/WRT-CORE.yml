@@ -68,7 +68,6 @@ jobs:
     name: ${{inputs.WRT_SOURCE}}
     runs-on: ubuntu-22.04
     steps:
-      -
       - name: Freeing up disk space
         uses: easimon/maximize-build-space@master
         with:
