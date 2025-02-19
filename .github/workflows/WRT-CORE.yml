@@ -98,7 +98,7 @@ jobs:
          docker_prune: "True"
          docker_clean: "True"
          apt_prune: "True"
-         apt_clean: "True
+         apt_clean: "True"
          homebrew_prune: "True"
          homebrew_clean: "True"
          npm_prune: "False"
