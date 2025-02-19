@@ -74,36 +74,18 @@ jobs:
         run: |
           sudo -E apt -yqq install bc
 
-#      - name: Free Disk Space
-#        uses: endersonmenezes/free-disk-space@v2
-#        with:
-#          remove_android: true
-#          remove_dotnet: true
-#          remove_haskell: true
-#          remove_tool_cache: true
-#          remove_swap: true
-#          remove_packages: "azure-cli google-cloud-cli microsoft-edge-stable google-chrome-stable firefox postgresql* temurin-* *llvm* mysql* dotnet-sdk-*"
-#          remove_packages_one_command: true
-#          remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/share/glade* /usr/local/share/chromium /usr/local/share/powershell"
-#          testing: false
-
-      - name: "Optimize Disk Space"
-        uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.1"
+      - name: Free Disk Space
+        uses: endersonmenezes/free-disk-space@v2
         with:
-         operate_sudo: "True"
-         general_include: ".+"
-         general_exclude: |-
-           ^GCC$
-         docker_include: ".+"
-         docker_prune: "True"
-         docker_clean: "True"
-         apt_prune: "True"
-         apt_clean: "True"
-         homebrew_prune: "True"
-         homebrew_clean: "True"
-         npm_prune: "False"
-         npm_clean: "False"
-         os_swap: "True"
+          remove_android: true
+          remove_dotnet: true
+          remove_haskell: true
+          remove_tool_cache: true
+          remove_swap: true
+          remove_packages: "azure-cli google-cloud-cli microsoft-edge-stable google-chrome-stable firefox postgresql* temurin-* *llvm* mysql* dotnet-sdk-*"
+          remove_packages_one_command: true
+          remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/share/glade* /usr/local/share/chromium /usr/local/share/powershell"
+          testing: false
 
       - name: Freeing up disk space
         uses: easimon/maximize-build-space@master
@@ -140,10 +122,6 @@ jobs:
           sudo -E systemctl daemon-reload
           sudo -E timedatectl set-timezone "Asia/Shanghai"
           sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
-          node -v
-          npm -v
-          npm install -g pnpm
-          pnpm -v
 
       - name: Initialization Values
         run: |
