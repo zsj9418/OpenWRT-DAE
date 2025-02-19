@@ -135,6 +135,11 @@ jobs:
           sudo -E systemctl daemon-reload
           sudo -E timedatectl set-timezone "Asia/Shanghai"
           sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
+          node -v
+          npm -v
+          pnpm -v
+          npm install -g pnpm
+          pnpm -v
 
       - name: Initialization Values
         run: |
