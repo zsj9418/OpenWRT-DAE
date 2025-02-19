@@ -1,5 +1,5 @@
 #云编译公用核心
-name: WRT-CORE
+name: WRT-CORE-TEST
 
 on:
   workflow_call:
@@ -120,7 +120,7 @@ jobs:
           }
           echo "WRT_DATE=$WRT_DATE" >> $GITHUB_ENV
           echo "WRT_CI=$WRT_CI" >> $GITHUB_ENV
-          echo "WRT_VER=$WRT_VER" >> $GITHUB_ENV
+          echo "WRT_VER=$WRT_VER" >> $GITHUB_ENV  
           echo "WRT_TARGET=$WRT_TARGET" >> $GITHUB_ENV
 
       - name: Clone Code
