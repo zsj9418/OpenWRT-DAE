@@ -92,7 +92,7 @@ jobs:
 #        with:
 #         operate_sudo: "True"
 #         general_include: ".+"
-#     #    general_exclude: |-
+#         general_exclude: |-
 #           ^GCC$
 #         docker_include: ".+"
 #         docker_prune: "True"
@@ -142,7 +142,6 @@ jobs:
           sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
           node -v
           npm -v
-          pnpm -v
           npm install -g pnpm
           pnpm -v
 
