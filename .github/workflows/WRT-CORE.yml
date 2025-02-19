@@ -255,7 +255,7 @@ jobs:
                 else
                   EXT=$(basename $FILE | cut -d '.' -f 2-)
                   NAME=$(basename $FILE | cut -d '.' -f 1 | grep -io "\($WRT_TARGET\).*")
-                  NEW_FILE="$WRT_TARGET"_"$NAME"_"$WRT_DATE"."$EXT"
+                  NEW_FILE="$WRT_CONFIG"_"$NAME"_"$WRT_DATE"."$EXT"
                   mv -f $FILE ./upload/$NEW_FILE                
                 fi
             done
@@ -267,7 +267,7 @@ jobs:
       - name: Release Firmware
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{env.CI_NAME}}-${{env.WRT_TARGET}}_${{env.WRT_DATE}}
+          tag_name: ${{env.CI_NAME}}-${{env.WRT_CONFIG}}_${{env.WRT_DATE}}
           files: ./wrt/upload/*.*
           body: |
             这是个平台固件包，内含多个设备！
