@@ -148,9 +148,6 @@ function generate_config() {
   set_kernel_size
   #增加内核选项
   cat_kernel_config "target/linux/qualcommax/${target}/config-default"
-  if [[ $(kernel_version) == "6.12" ]]; then
-    echo "delete 140-trace_backport.patch done!"
-  fi
 }
 
 
