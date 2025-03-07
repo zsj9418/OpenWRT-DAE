@@ -73,5 +73,6 @@ else
   log "v2ray geosite.dat updated"
 fi
 
-#重启dead
+#重启dead 或者dae
 /etc/init.d/daed running && /etc/init.d/daed restart
+/etc/init.d/dae running && /etc/init.d/dae hot_reload
