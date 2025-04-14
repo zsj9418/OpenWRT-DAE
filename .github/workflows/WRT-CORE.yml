@@ -237,7 +237,7 @@ jobs:
                 else
                   EXT=$(basename $FILE | cut -d '.' -f 2-)
                   NAME=$(basename $FILE | cut -d '.' -f 1 | grep -io "\($WRT_TARGET\).*")
-                  NEW_FILE="$WRT_CONFIG"_"$NAME"_"$WRT_DATE"."$EXT"
+                  NEW_FILE="$WRT_VER"_"$WRT_CONFIG"_"$NAME"_"$WRT_DATE"."$EXT"
                   mv -f $FILE ./upload/$NEW_FILE                
                 fi
             done
