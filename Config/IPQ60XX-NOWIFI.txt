@@ -71,3 +71,5 @@ CONFIG_ATH11K_MEM_PROFILE_512M=y
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-zn_m2 is not set
 
+CONFIG_PACKAGE_sqm-scripts-nss=y
+CONFIG_PACKAGE_kmod-qca-nss-crypto=y
