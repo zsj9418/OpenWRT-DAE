@@ -12,6 +12,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/daeuniverse/dae.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(shell git ls-remote $(PKG_SOURCE_URL) HEAD | cut -c1-7)
+PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=AGPL-3.0-only
 PKG_LICENSE_FILE:=LICENSE
