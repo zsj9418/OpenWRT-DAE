@@ -80,7 +80,7 @@ define Build/Prepare
 		wget -qO - https://github.com/daeuniverse/dae/pull/782.patch | patch -p1 ; \
 		go mod tidy ; \
 		popd ; \
-		pushd $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/wing ; \
+		pushd $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/wing && git submodule update --init --recursive ; \
 		wget -qO - https://github.com/daeuniverse/dae-wing/commit/ca02961.patch | patch -p1 ; \
 
 		go mod tidy ; \
