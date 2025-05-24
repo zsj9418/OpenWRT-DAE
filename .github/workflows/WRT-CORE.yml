@@ -87,17 +87,6 @@ jobs:
           remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/share/glade* /usr/local/share/chromium /usr/local/share/powershell"
           testing: false
 
-#      - name: Freeing up disk space
-#        uses: easimon/maximize-build-space@master
-#        with:
-#          root-reserve-mb: 10240
-#          swap-size-mb: 1024
-#          remove-dotnet: 'true'
-#          remove-android: 'true'
-#          remove-haskell: 'true'
-#          remove-codeql: 'true'
-#          remove-docker-images: 'true'
-
       - name: Checkout Projects
         uses: actions/checkout@main
       - name: Initialization Environment
@@ -110,8 +99,7 @@ jobs:
           sudo -E apt -yqq autoclean
           sudo -E apt -yqq clean
           sudo -E apt -yqq install dos2unix libfuse-dev
-#          sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
-          sudo bash -c $GITHUB_WORKSPACE/Scripts/init_build_environment.sh
+          sudo bash $GITHUB_WORKSPACE/Scripts/init_build_environment.sh
           sudo -E systemctl daemon-reload
           sudo -E timedatectl set-timezone "Asia/Shanghai"
 #          sudo chown $USER:$GROUPS $GITHUB_WORKSPACE
