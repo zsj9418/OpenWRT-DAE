@@ -117,11 +117,13 @@ define Build/Compile
 	( \
 		pushd $(PKG_BUILD_DIR) ; \
 		$(MAKE) deps ; \
+		export \
 		$(GO_GENERAL_BUILD_CONFIG_VARS) \
 		$(GO_PKG_BUILD_CONFIG_VARS) \
 		$(GO_PKG_BUILD_VARS); \
 		go generate ./... ; \
 		cd dae-core ; \
+		export \
 		BPF_CLANG="$(CLANG)" \
 		BPF_STRIP_FLAG="-strip=$(LLVM_STRIP)" \
 		BPF_CFLAGS="$(DAE_CFLAGS)" \
