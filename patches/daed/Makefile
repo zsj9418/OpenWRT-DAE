@@ -113,17 +113,20 @@ endif
 define Build/Compile
 	( \
 		pushd $(PKG_BUILD_DIR) ; \
-		$(MAKE) deps ; \
+		export \
 		$(GO_GENERAL_BUILD_CONFIG_VARS) \
 		$(GO_PKG_BUILD_CONFIG_VARS) \
-		$(GO_PKG_BUILD_VARS); \
+		$(GO_PKG_BUILD_VARS) ; \
 		go generate ./... ; \
 		cd dae-core ; \
+		export \
 		BPF_CLANG="$(CLANG)" \
 		BPF_STRIP_FLAG="-strip=$(LLVM_STRIP)" \
 		BPF_CFLAGS="$(DAE_CFLAGS)" \
 		BPF_TARGET="bpfel,bpfeb" \
+		BPF_TRACE_TARGET="$(GO_ARCH)" ; \
 		go generate control/control.go ; \
+		go generate trace/trace.go ; \
 		popd ; \
 		$(call GoPackage/Build/Compile) ; \
 	)
