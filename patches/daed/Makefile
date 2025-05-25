@@ -34,7 +34,7 @@ GO_PKG_LDFLAGS:= \
 GO_PKG_LDFLAGS_X= \
 	$(GO_PKG)/db.AppName=$(PKG_NAME) \
 	$(GO_PKG)/db.AppVersion=$(DAED_VERSION)_$(WING_VERSION)_$(CORE_VERSION)
-GO_PKG_TAGS:=embedallowed
+GO_PKG_TAGS:=embedallowed,trace
 GO_PKG_TARGET_VARS:=$(filter-out CGO_ENABLED=%,$(GO_PKG_TARGET_VARS)) CGO_ENABLED=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -102,10 +102,8 @@ endef
 DAE_CFLAGS:= \
 	-O2 -Wall -Werror \
 	-DMAX_MATCH_SET_LEN=1024 \
-	-D__UNROLL_ROUTE_LOOP \
-	-I$(BPF_HEADERS_DIR) \
 	-I$(BPF_HEADERS_DIR)/tools/lib \
-	-I$(BPF_HEADERS_DIR)/arch/$(BPF_KARCH)/include
+	-I$(BPF_HEADERS_DIR)/arch/$(BPF_KARCH)/include/asm/mach-generic
 
 ifneq ($(CONFIG_USE_MUSL),)
   TARGET_CFLAGS += -D_LARGEFILE64_SOURCE
@@ -121,16 +119,14 @@ define Build/Compile
 		go generate ./... ; \
 		cd dae-core ; \
 		export \
-		$(GO_GENERAL_BUILD_CONFIG_VARS) \
-		$(GO_PKG_BUILD_CONFIG_VARS) \
-		$(GO_PKG_BUILD_VARS) \
 		BPF_CLANG="$(CLANG)" \
 		BPF_STRIP_FLAG="-strip=$(LLVM_STRIP)" \
 		BPF_CFLAGS="$(DAE_CFLAGS)" \
 		BPF_TARGET="bpfel,bpfeb" \
 		BPF_TRACE_TARGET="$(GO_ARCH)" ; \
-		go generate $(PKG_BUILD_DIR)/control/control.go ; \
-		go generate $(PKG_BUILD_DIR)/trace/trace.go ; \
+		go generate control/control.go ; \
+		go generate trace/trace.go ; \
+		popd ; \
 		$(call GoPackage/Build/Compile) ; \
 	)
 endef
