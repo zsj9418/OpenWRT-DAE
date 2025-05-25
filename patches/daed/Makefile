@@ -121,14 +121,16 @@ define Build/Compile
 		go generate ./... ; \
 		cd dae-core ; \
 		export \
+		$(GO_GENERAL_BUILD_CONFIG_VARS) \
+		$(GO_PKG_BUILD_CONFIG_VARS) \
+		$(GO_PKG_BUILD_VARS) \
 		BPF_CLANG="$(CLANG)" \
 		BPF_STRIP_FLAG="-strip=$(LLVM_STRIP)" \
 		BPF_CFLAGS="$(DAE_CFLAGS)" \
 		BPF_TARGET="bpfel,bpfeb" \
 		BPF_TRACE_TARGET="$(GO_ARCH)" ; \
-		go generate control/control.go ; \
-		go generate trace/trace.go ; \
-		popd ; \
+		go generate $(PKG_BUILD_DIR)/control/control.go ; \
+		go generate $(PKG_BUILD_DIR)/trace/trace.go ; \
 		$(call GoPackage/Build/Compile) ; \
 	)
 endef
