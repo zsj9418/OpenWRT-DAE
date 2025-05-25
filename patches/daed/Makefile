@@ -103,8 +103,9 @@ DAE_CFLAGS:= \
 	-O2 -Wall -Werror \
 	-DMAX_MATCH_SET_LEN=1024 \
 	-D__UNROLL_ROUTE_LOOP \
+	-I$(BPF_HEADERS_DIR) \
 	-I$(BPF_HEADERS_DIR)/tools/lib \
-	-I$(BPF_HEADERS_DIR)/arch/$(BPF_KARCH)/include/asm/mach-generic
+	-I$(BPF_HEADERS_DIR)/arch/$(BPF_KARCH)/include
 
 ifneq ($(CONFIG_USE_MUSL),)
   TARGET_CFLAGS += -D_LARGEFILE64_SOURCE
