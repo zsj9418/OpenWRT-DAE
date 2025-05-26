@@ -142,7 +142,6 @@ function generate_config() {
   fi
 
   set_nss_driver $config_file
-  cat_usb_net $config_file
   #增加ebpf
   cat_ebpf_config $config_file
   enable_skb_recycler $config_file
