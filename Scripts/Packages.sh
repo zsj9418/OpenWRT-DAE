@@ -114,34 +114,29 @@ UPDATE_VERSION() {
 
 #UPDATE_VERSION "软件包名" "测试版，true，可选，默认为否"
 UPDATE_VERSION "sing-box"
-UPDATE_VERSION "tailscale"
+#UPDATE_VERSION "tailscale"
 
 
 
-rm -rf small && git clone https://github.com/kenzok8/small small
-rm -rf small/{luci-app-bypass,v2ray-geodata,luci-app-fchomo}
 #不编译xray-core
-sed -i 's/+xray-core//' small/luci-app-passwall2/Makefile
+sed -i 's/+xray-core//' passwall2/luci-app-passwall2/Makefile
 
 #删除官方的默认插件
 rm -rf ../feeds/luci/applications/luci-app-{passwall*,mosdns,dockerman,dae*,bypass*}
-rm -rf ../feeds/packages/net/{shadowsocks-rust,shadowsocksr-libev,xray*,v2ray*,dae*,sing-box,geoview,ddns-go,mosdns}
+rm -rf ../feeds/packages/net/{v2ray-geodata,dae*}
 
 #更新golang为最新版
 rm -rf ../feeds/packages/lang/golang
 git clone -b 24.x https://github.com/sbwml/packages_lang_golang ../feeds/packages/lang/golang
 
-#增强版v2ray-geodata
-#git clone https://github.com/sbwml/v2ray-geodata
-#sed -i 's/geoip-only-cn-private.dat/geoip.dat/g' ./v2ray-geodata/Makefile
 
 cp -r $GITHUB_WORKSPACE/package/* ./
 
 #coremark修复
 sed -i 's/mkdir \$(PKG_BUILD_DIR)\/\$(ARCH)/mkdir -p \$(PKG_BUILD_DIR)\/\$(ARCH)/g' ../feeds/packages/utils/coremark/Makefile
 
-argon_css_file=$(find ./luci-theme-argon/ -type f -name "cascade.css")
 #修改字体
+argon_css_file=$(find ./luci-theme-argon/ -type f -name "cascade.css")
 sed -i "/^.main .main-left .nav li a {/,/^}/ { /font-weight: bolder/d }" $argon_css_file
 sed -i '/^\[data-page="admin-system-opkg"\] #maincontent>.container {/,/}/ s/font-weight: 600;/font-weight: normal;/' $argon_css_file
 
