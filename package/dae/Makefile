@@ -69,6 +69,7 @@ define Build/Prepare
 		pushd $(PKG_BUILD_DIR) ; \
 		git submodule update --init ; \
 		wget -qO - https://github.com/daeuniverse/dae/pull/763.patch | patch -p1 ; \
+		wget -qO - https://github.com/daeuniverse/dae/pull/822.patch | patch -p1 ; \
 		go mod tidy ; \
 		popd ; \
 	)
