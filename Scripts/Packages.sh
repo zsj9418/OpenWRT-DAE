@@ -113,13 +113,13 @@ UPDATE_VERSION() {
 }
 
 #UPDATE_VERSION "软件包名" "测试版，true，可选，默认为否"
-UPDATE_VERSION "sing-box"
+#UPDATE_VERSION "sing-box"
 #UPDATE_VERSION "tailscale"
 
 
 
 #不编译xray-core
-sed -i 's/+xray-core//' passwall2/luci-app-passwall2/Makefile
+sed -i 's/+xray-core//' luci-app-passwall2/Makefile
 
 #删除官方的默认插件
 rm -rf ../feeds/luci/applications/luci-app-{passwall*,mosdns,dockerman,dae*,bypass*}
@@ -142,4 +142,4 @@ sed -i '/^\[data-page="admin-system-opkg"\] #maincontent>.container {/,/}/ s/fon
 
 #修复daed/Makefile
 rm -rf luci-app-daed/daed/Makefile && cp -r $GITHUB_WORKSPACE/patches/daed/Makefile luci-app-daed/daed/
-cat luci-app-daed/daed/Makefile
+#cat luci-app-daed/daed/Makefile
