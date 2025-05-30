@@ -63,17 +63,7 @@ define Package/dae/description
   loss and additional resource consumption for direct traffic.
 endef
 
-define Build/Prepare
-	( \
-		rm -rf $(PKG_BUILD_DIR) && git clone https://github.com/daeuniverse/dae $(PKG_BUILD_DIR) && git -C $(PKG_BUILD_DIR) checkout $(PKG_SOURCE_VERSION) ; \
-		pushd $(PKG_BUILD_DIR) ; \
-		git submodule update --init ; \
-		wget -qO - https://github.com/daeuniverse/dae/pull/763.patch | patch -p1 ; \
-		wget -qO - https://github.com/daeuniverse/dae/pull/822.patch | patch -p1 ; \
-		go mod tidy ; \
-		popd ; \
-	)
-endef
+
 
 define Package/dae/conffiles
 /etc/dae/config.dae
