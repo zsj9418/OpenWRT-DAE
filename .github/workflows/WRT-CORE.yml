@@ -122,6 +122,7 @@ jobs:
             export WRT_ARCH=$(sed -n 's/.*_DEVICE_\(.*\)_DEVICE_.*/\1/p' $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt | head -n 1)
             echo "WRT_ARCH=$WRT_ARCH" >> $GITHUB_ENV
           }
+          echo "$WRT_REPO/$WRT_BRANCH" > "$GITHUB_WORKSPACE/repo_flag"
       - name: Clone Code
         run: |
           git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO ./wrt/
@@ -138,9 +139,9 @@ jobs:
           path: |
             ./wrt/.ccache
             ./wrt/staging_dir
-          key: ${{ inputs.runs-on }}-${{ hashFiles('**/repo_flag') }}-${{ env.WRT_DATE }}
+          key: ${{ env.WRT_ARCH }}-${{ hashFiles('**/repo_flag') }}-${{ env.WRT_DATE }}
           restore-keys: |
-            ${{ inputs.runs-on }}-${{ hashFiles('**/repo_flag') }}-
+            ${{ env.WRT_ARCH }}-${{ hashFiles('**/repo_flag') }}-
 
       - name: Refresh the cache
         run: |
@@ -194,7 +195,7 @@ jobs:
       - name: Delete Old Cache
         run: |
           # 获取缓存列表并删除
-          gh cache list --key ${{ inputs.runs-on }}-${{ hashFiles('**/repo_flag') }}- --json key --jq '.[] | .key' | while read -r key; do
+          gh cache list --key ${{ env.WRT_ARCH }}-${{ hashFiles('**/repo_flag') }}- --json key --jq '.[] | .key' | while read -r key; do
             gh cache delete "$key"
           done
           # 输出缓存状态
