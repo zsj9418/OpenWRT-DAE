@@ -47,6 +47,4 @@ config pushbot 'pushbot'
 	list device_aliases 'DC:D8:7C:20:4F:4A-AX1800'
 	list device_aliases 'B8:60:61:7B:4E:B4-RAX3000M'
 	list device_aliases 'BC:04:35:41:5C:7E-华凌空调'
-    option we_webhook '48af4abf-bd20-4f15-99bb-17bbc49010c9'
-	option device_name 'AX1800'
 
