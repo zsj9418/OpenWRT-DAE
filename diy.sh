@@ -27,7 +27,7 @@ export GITHUB_WORKSPACE=$(pwd)
 export WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
 export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
 export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt)
-export WRT_NAME='OWRT'
+export WRT_NAME='DAE-AX1800'
 export WRT_SSID='OWRT'
 export WRT_WORD='12345678'
 export WRT_THEME='argon'
