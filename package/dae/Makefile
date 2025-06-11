@@ -11,7 +11,7 @@ PKG_RELEASE:=1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/daeuniverse/dae.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=$(shell git ls-remote $(PKG_SOURCE_URL) HEAD | awk '{print $1}')
+#PKG_SOURCE_VERSION:=$(shell git ls-remote $(PKG_SOURCE_URL) HEAD | awk '{print $1}')
 PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=AGPL-3.0-only
@@ -25,7 +25,7 @@ PKG_BUILD_FLAGS:=no-mips16
 GO_PKG:=github.com/daeuniverse/dae
 GO_PKG_EXCLUDES:=control/kern/tests
 GO_PKG_LDFLAGS_X:= \
-	$(GO_PKG)/cmd.Version=$(shell echo $(PKG_SOURCE_VERSION) | cut -c1-7) \
+	$(GO_PKG)/cmd.Version=$(shell git ls-remote $(PKG_SOURCE_URL) HEAD | cut -c1-7) \
 	$(GO_PKG)/common/consts.MaxMatchSetLen_=1024
 GO_PKG_TAGS:=trace
 
