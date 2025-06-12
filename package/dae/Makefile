@@ -71,15 +71,15 @@ define Package/dae/conffiles
 /etc/config/dae
 endef
 
-#define Build/Prepare
-#	( \
-#		rm -rf $(PKG_BUILD_DIR) && git clone https://github.com/daeuniverse/dae $(PKG_BUILD_DIR) && git -C $(PKG_BUILD_DIR) checkout $(CORE_HASH_SHORT) ; \
-#		pushd $(PKG_BUILD_DIR)/dae-core ; \
-#		git submodule update --init ; \
-#		go mod tidy ; \
-#		popd ; \
-#	)
-#endef
+define Build/Prepare
+	( \
+		rm -rf $(PKG_BUILD_DIR) && git clone https://github.com/daeuniverse/dae $(PKG_BUILD_DIR) && git -C $(PKG_BUILD_DIR) checkout master ; \
+		pushd $(PKG_BUILD_DIR) ; \
+		git submodule update --init ; \
+		go mod tidy ; \
+		popd ; \
+	)
+endef
 
 DAE_CFLAGS:= \
 	-O2 -Wall -Werror \
