@@ -33,7 +33,7 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/bpf.mk
 include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 
-UNZIP_CMD:=unzip -q -d $(PKG_BUILD_DIR) $(DL_DIR)/$(PKG_SOURCE)
+TAR_CMD=$(HOST_TAR) -C $(BUILD_DIR)/ $(TAR_OPTIONS)
 
 define Package/dae/Default
   SECTION:=net
@@ -69,6 +69,16 @@ define Package/dae/conffiles
 /etc/dae/config.dae
 /etc/config/dae
 endef
+
+#define Build/Prepare
+#	( \
+		rm -rf $(PKG_BUILD_DIR) && git clone https://github.com/daeuniverse/dae $(PKG_BUILD_DIR) && git -C $(PKG_BUILD_DIR) checkout master ; \
+		pushd $(PKG_BUILD_DIR) ; \
+		git submodule update --init ; \
+		go mod tidy ; \
+		popd ; \
+	)
+#endef
 
 DAE_CFLAGS:= \
 	-O2 -Wall -Werror \
